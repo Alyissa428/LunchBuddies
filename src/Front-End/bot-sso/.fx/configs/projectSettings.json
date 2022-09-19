@@ -1,0 +1,30 @@
+{
+    "appName": "SSOBotSample",
+    "solutionSettings": {
+        "name": "fx-solution-azure",
+        "version": "1.0.0",
+        "hostType": "Azure",
+        "capabilities": [
+            "Bot",
+            "BotSSO"
+        ],
+        "azureResources": [],
+        "activeResourcePlugins": [
+            "fx-resource-identity",
+            "fx-resource-bot",
+            "fx-resource-aad-app-for-teams",
+            "fx-resource-local-debug",
+            "fx-resource-appstudio"
+        ]
+    },
+    "isFromSample": true,
+    "programmingLanguage": "typescript",
+    "version": "2.0.0",
+    "pluginSettings": {
+        "fx-resource-bot": {
+            "host-type": "app-service",
+            "capabilities": []
+        }
+    },
+    "projectId": "6efae3dd-d28c-4c50-87e4-3b3f54be4d6b"
+}
