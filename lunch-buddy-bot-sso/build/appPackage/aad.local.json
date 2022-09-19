@@ -1,0 +1,101 @@
+{
+    "id": "f0aec908-2af3-43af-abf5-4a828ff6badb",
+    "appId": "c89980c9-2a3c-44ec-b1ca-4195b80a1136",
+    "name": "SSOBotSample-local-debug-aad",
+    "accessTokenAcceptedVersion": 2,
+    "signInAudience": "AzureADMyOrg",
+    "optionalClaims": {
+        "idToken": [],
+        "accessToken": [
+            {
+                "name": "idtyp",
+                "source": null,
+                "essential": false,
+                "additionalProperties": []
+            }
+        ],
+        "saml2Token": []
+    },
+    "requiredResourceAccess": [
+        {
+            "resourceAppId": "00000003-0000-0000-c000-000000000000",
+            "resourceAccess": [
+                {
+                    "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+                    "type": "Scope"
+                }
+            ]
+        }
+    ],
+    "oauth2Permissions": [
+        {
+            "adminConsentDescription": "Allows Teams to call the app's web APIs as the current user.",
+            "adminConsentDisplayName": "Teams can access app's web APIs",
+            "id": "38483d58-9a9e-43f7-9561-205c84f59237",
+            "isEnabled": true,
+            "type": "User",
+            "userConsentDescription": "Enable Teams to call this app's web APIs with the same rights that you have",
+            "userConsentDisplayName": "Teams can access app's web APIs and make requests on your behalf",
+            "value": "access_as_user"
+        }
+    ],
+    "preAuthorizedApplications": [
+        {
+            "appId": "1fec8e78-bce4-4aaf-ab1b-5451cc387264",
+            "permissionIds": [
+                "38483d58-9a9e-43f7-9561-205c84f59237"
+            ]
+        },
+        {
+            "appId": "5e3ce6c0-2b1f-4285-8d4b-75ee78787346",
+            "permissionIds": [
+                "38483d58-9a9e-43f7-9561-205c84f59237"
+            ]
+        },
+        {
+            "appId": "d3590ed6-52b3-4102-aeff-aad2292ab01c",
+            "permissionIds": [
+                "38483d58-9a9e-43f7-9561-205c84f59237"
+            ]
+        },
+        {
+            "appId": "00000002-0000-0ff1-ce00-000000000000",
+            "permissionIds": [
+                "38483d58-9a9e-43f7-9561-205c84f59237"
+            ]
+        },
+        {
+            "appId": "bc59ab01-8403-45c6-8796-ac3ef710b3e3",
+            "permissionIds": [
+                "38483d58-9a9e-43f7-9561-205c84f59237"
+            ]
+        },
+        {
+            "appId": "0ec893e0-5785-4de6-99da-4ed124e5296c",
+            "permissionIds": [
+                "38483d58-9a9e-43f7-9561-205c84f59237"
+            ]
+        },
+        {
+            "appId": "4765445b-32c6-49b0-83e6-1d93765276ca",
+            "permissionIds": [
+                "38483d58-9a9e-43f7-9561-205c84f59237"
+            ]
+        },
+        {
+            "appId": "4345a7b9-9a63-4910-a426-35363201d503",
+            "permissionIds": [
+                "38483d58-9a9e-43f7-9561-205c84f59237"
+            ]
+        }
+    ],
+    "identifierUris": [
+        "api://botid-3271f6e1-2a3b-4b3e-ad1b-db72db3d72ad"
+    ],
+    "replyUrlsWithType": [
+        {
+            "url": "https://73ab-2001-4898-a800-1010-7fe3-64a6-8c2a-98f9.ngrok.io/auth-end.html",
+            "type": "Web"
+        }
+    ]
+}
