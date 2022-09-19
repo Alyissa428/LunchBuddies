@@ -6,6 +6,7 @@ public class Question
 {
     public enum QuestionType { Personality, Hobby, Food, Music, Movie, TV, Sports, Other };
     public QuestionType Type;
+    public int QuestionId;
     public string QuestionText;
     public Dictionary<string, object> Answer;
 
@@ -14,5 +15,7 @@ public class Question
         Type = type;
         QuestionText = questionText;
         Answer = answer;
+        //TODO: Add QuestionId
+
     }
 }
