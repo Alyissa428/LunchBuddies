@@ -24,14 +24,18 @@ export class MatchUserProfile extends SSOCommand {
     const me = await graphClient.api("/me").get();
     if (me) {
       const matchCard = CardFactory.thumbnailCard(
-        "Woof! We found a lunch buddy for you today.",
-      );
-      await context.sendActivity({ attachments: [matchCard] });
-      await context.sendActivity(
-        `You're logged in as ${me.displayName} (${me.userPrincipalName})${
-          me.jobTitle ? `; your job title is: ${me.jobTitle}` : ""
-        }.`
-      );
+        " "+ `Woof! We found a lunch buddy for you today. \n You're logged in as ${me.displayName} \n (${me.userPrincipalName}). ${
+          me.jobTitle ? `Your job title is: ${me.jobTitle}` : ""
+        }` 
+
+        );
+        await context.sendActivity({ attachments: [matchCard] });
+        await context.sendActivity(
+          `You're logged in as ${me.displayName} (${me.userPrincipalName})${
+            me.jobTitle ? `; your job title is: ${me.jobTitle}` : ""
+          }.`
+        );
+      
     } else {
       await context.sendActivity(
         "Could not retrieve profile information from Microsoft Graph."
