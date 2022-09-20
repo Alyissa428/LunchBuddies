@@ -7,15 +7,18 @@ public class User
     public string Alias;
     public string Location;
     public string Team;
+
+    public int Age;
     public Dictionary<Question, List<string>> QuestionAnswerPairs;
     public Dictionary<User, int> UserMatches;
 
-    public User(string name, string alias, string location, string team)
+    public User(string name, string alias, string location, string team, int age)
     {
         Name = name;
         Alias = alias;
         Location = location;
         Team = team;
+        Age = age;
         QuestionAnswerPairs = new Dictionary<Question, List<string>>();
         UserMatches = new Dictionary<User, int>();
     }
