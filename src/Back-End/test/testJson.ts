@@ -1,7 +1,6 @@
 //Use the JsonTranslator to translate a JSON file to a Question object
-import { JsonToQuestion } from '../JsonTranslator';
+import { JsonToQuestion, JsonToUser } from '../JsonTranslator';
+import { User } from '../user';
 
-export function TestJson() {
-    let question = JsonToQuestion("QuestionJson.json");
-    console.log(question);
-}
+let user = JsonToUser("../UserJson.json");
+console.log(user);
