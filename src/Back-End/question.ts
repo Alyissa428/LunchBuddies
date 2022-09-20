@@ -3,7 +3,8 @@ export interface Question {
     type: QuestionType;
     questionId: number;
     questionText: string;
-    answers: { [key: string]: AnswerRelationship[]; };
+    //Key: answer text, Value: { Key: other answers: Value: relationshipScore}
+    answers: { [key: string]: {[key: string]: number; }; };
 }
 
 export enum QuestionType {
@@ -11,9 +12,4 @@ export enum QuestionType {
     MinorTalkingPoint,
     SharedExperiences,
     SocialBarriers
-}
-
-export interface AnswerRelationship {
-    key: string;
-    value: number;
 }
