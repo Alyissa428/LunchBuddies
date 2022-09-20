@@ -10,7 +10,9 @@ export class MatchCommand extends BotCommand {
     location: string,
     favoriteFood: string,
     hobbies: string,
-    compatibilityScore: string
+    compatibilityScore: string,
+    alias: string,
+    newMessage: string
     //imagePatch: string
   };
   constructor() {
@@ -24,6 +26,8 @@ export class MatchCommand extends BotCommand {
       favoriteFood: "Mexican",
       hobbies: "Hiking",
       compatibilityScore: "90" + "%",
+      alias: "lindsayashby",
+      newMessage: "hello"
       //imagePatch: ""
     };
   }
