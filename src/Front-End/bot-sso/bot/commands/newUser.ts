@@ -1,15 +1,15 @@
 import { BotCommand } from "../helpers/botCommand";
 import { Utils } from "../helpers/utils";
-const rawWelcomeCard = require("../adaptiveCards/welcome.json");
+const rawNewUserCard = require("../adaptiveCards/newUser.json");
 
-export class WelcomeCommand extends BotCommand {
+export class NewUserCommand extends BotCommand {
   constructor() {
     super();
     this.matchPatterns = [/^\s*new user\s*/];
   }
 
   async run(parameters: any): Promise<any> {
-    const card = Utils.renderAdaptiveCard(rawWelcomeCard);
+    const card = Utils.renderAdaptiveCard(rawNewUserCard);
     return await parameters.context.sendActivity({ attachments: [card] });
   }
 }

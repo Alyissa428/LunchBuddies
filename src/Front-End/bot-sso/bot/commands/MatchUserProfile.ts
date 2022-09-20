@@ -34,6 +34,7 @@ export class MatchUserProfile extends SSOCommand {
             me.jobTitle ? `; your job title is: ${me.jobTitle}` : ""
           }.`
         );
+        
       
     } else {
       await context.sendActivity(

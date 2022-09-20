@@ -12,7 +12,7 @@ import {
 import { Utils } from "./helpers/utils";
 import { SSODialog } from "./helpers/ssoDialog";
 import { CommandsHelper } from "./helpers/commandHelper";
-const rawWelcomeCard = require("./adaptiveCards/welcome.json");
+const rawNewUserCard = require("./adaptiveCards/newUser.json");
 const rawLearnCard = require("./adaptiveCards/learn.json");
 
 export class TeamsBot extends TeamsActivityHandler {
@@ -69,7 +69,7 @@ export class TeamsBot extends TeamsActivityHandler {
       const membersAdded = context.activity.membersAdded;
       for (let cnt = 0; cnt < membersAdded.length; cnt++) {
         if (membersAdded[cnt].id) {
-          const card = Utils.renderAdaptiveCard(rawWelcomeCard);
+          const card = Utils.renderAdaptiveCard(rawNewUserCard);
           await context.sendActivity({ attachments: [card] });
           break;
         }
