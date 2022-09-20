@@ -17,7 +17,7 @@ export class MatchCommand extends BotCommand {
   };
   constructor() {
     super();
-    this.matchPatterns = [/^\s*match\s*/];
+    this.matchPatterns = [/^\s*find a lunch buddy\s*/];
     this.matchObj = { firstname: "John", 
       lastname: "Doe",
       title: "Software Engineer", 
@@ -26,7 +26,7 @@ export class MatchCommand extends BotCommand {
       favoriteFood: "Mexican",
       hobbies: "Hiking",
       compatibilityScore: "90" + "%",
-      alias: "lindsayashby",
+      alias: "johndoe",
       newMessage: "hello"
       //imagePatch: ""
     };
