@@ -42,20 +42,24 @@
                     ],
                     "commands": [
                         {
-                            "title": "new user",
+                            "title": "New user",
                             "description": "If you are a new user, please select this option"
                         },
                         {
-                            "title": "learn",
+                            "title": "Learn",
                             "description": "Learn about Adaptive Card and Bot Command"
                         },
                         {
-                            "title": "show",
+                            "title": "Show",
                             "description": "Show user profile by calling Microsoft Graph API with SSO"
                         },
                         {
-                            "title": "match me",
+                            "title": "Match me",
                             "description": "If you answered the questionnaire, please select this option to be matched with a lunch buddy"
+                        },
+                        {
+                            "title": "Match",
+                            "description": "Adaptive card testing only"
                         }
                     ]
                 }
