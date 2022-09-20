@@ -45,6 +45,7 @@ export class QuestionController {
 
     public getDailyQuestionList(): Question[] {
         //We could give one major, one minor, and one of either type?
+        return [];
     }
 
     public getAllMatchingBuddies(user1: User, user2: User): User[] {
