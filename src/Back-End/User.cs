@@ -1,18 +1,35 @@
 ﻿using System;
 using Question;
-//User object that has a list of all Questions objects that the user has answered and a list of all the users that the user has matched with
+
 public class User
 {
     public string Name;
     public string Alias;
     public string Location;
     public string Team;
-    public List<Question> Questions;
-    public List<User> Matches;
 
-    public User(List<Question> questions, List<User> matches)
+    public int Age;
+    public Dictionary<Question, List<string>> QuestionAnswerPairs;
+    public Dictionary<User, int> UserMatches;
+
+    public User(string name, string alias, string location, string team, int age)
     {
-        Questions = questions;
-        Matches = matches;
+        Name = name;
+        Alias = alias;
+        Location = location;
+        Team = team;
+        Age = age;
+        QuestionAnswerPairs = new Dictionary<Question, List<string>>();
+        UserMatches = new Dictionary<User, int>();
+    }
+
+    public void AddQuestionAnswerPair(Question question, List<string> answers)
+    {
+        QuestionAnswerPairs.Add(question, answers);
+    }
+
+    public void AddUserMatch(User user, int matchValue)
+    {
+        UserMatches.Add(user, matchValue);
     }
 }

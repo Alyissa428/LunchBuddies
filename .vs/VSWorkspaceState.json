@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\lunch-buddy-bot-sso",
     "\\src",
-    "\\src\\Base Objects"
+    "\\src\\Back-End"
   ],
-  "SelectedNode": "\\src\\Base Objects\\Question.cs",
   "PreviewInSolutionExplorer": false
 }
