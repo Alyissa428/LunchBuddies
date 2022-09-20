@@ -2,6 +2,7 @@
 import { Question } from './question';
 import { User } from './user';
 import { QuestionType } from './question';
+import { Score } from './score';
 
 export class QuestionController {
 
@@ -61,9 +62,35 @@ export class QuestionController {
     }
 
     public getRecommendedUsers(user: User): User[] | null {
-        let recommendedUsers: User[] = [];
-
-        return null;
+        let recommendedUsers: {[key: string]: number} = {};
+        //Iterate over all users and calculate their score with the given user. Return the top 3 users.
+        for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].alias !== user.alias) {
+                let score = new Score().getScore(user, this.users[i], this);
+                //If the recommendedUsers array is less than 3, just add the user
+                if (recommendedUsers.length < 3) {
+                    recommendedUsers[this.users[i].alias] = score;
+                } else {
+                    //Otherwise, we need to find the user with the lowest score and replace them
+                    let lowestScore = 0;
+                    let lowestScoreUser = "";
+                    for (let recommendedUser in recommendedUsers) {
+                        if (recommendedUsers[recommendedUser] < lowestScore) {
+                            lowestScore = recommendedUsers[recommendedUser];
+                            lowestScoreUser = recommendedUser;
+                        }
+                    }
+                    if (score > lowestScore) {
+                        recommendedUsers[lowestScoreUser] = score;
+                    }
+                }
+            }
+        }
+        let recommendedUsersArray: User[] = [];
+        for (let recommendedUser in recommendedUsers) {
+            recommendedUsersArray.push(this.getUser(recommendedUser));
+        }
+        return recommendedUsersArray;
     }
 
     //Returns the question with the given questionId
