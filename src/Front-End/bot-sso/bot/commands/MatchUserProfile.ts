@@ -14,7 +14,6 @@ export class MatchUserProfile extends SSOCommand {
   }
 
   async showUserInfo(context: TurnContext, ssoToken: string) {
-    // await context.sendActivity("Retrieving user information from Microsoft Graph ...");
 
     // Call Microsoft Graph half of user
     const teamsfx = new TeamsFx().setSsoToken(ssoToken);

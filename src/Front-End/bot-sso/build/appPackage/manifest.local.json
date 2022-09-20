@@ -42,8 +42,8 @@
                     ],
                     "commands": [
                         {
-                            "title": "welcome",
-                            "description": "Resend welcome card of this Bot"
+                            "title": "new user",
+                            "description": "If you are a new user, please select this option"
                         },
                         {
                             "title": "learn",
@@ -52,6 +52,10 @@
                         {
                             "title": "show",
                             "description": "Show user profile by calling Microsoft Graph API with SSO"
+                        },
+                        {
+                            "title": "match me",
+                            "description": "If you answered the questionnaire, please select this option to be matched with a lunch buddy"
                         }
                     ]
                 }
@@ -66,7 +70,7 @@
         "messageTeamMembers"
     ],
     "validDomains": [
-        "7fa9-2001-4898-80e8-7-e8e3-12af-8cc4-3ae.ngrok.io"
+        "461d-2001-4898-80e8-a-e8e0-12af-8cc4-3ae.ngrok.io"
     ],
     "webApplicationInfo": {
         "id": "2bab50d2-2c9c-4fac-b48a-e1226674c06d",
