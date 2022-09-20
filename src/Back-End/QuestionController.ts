@@ -43,6 +43,29 @@ export class QuestionController {
         return null;
     }
 
+    public getDailyQuestionList(): Question[] {
+        //We could give one major, one minor, and one of either type?
+    }
+
+    public getAllMatchingBuddies(user1: User, user2: User): User[] {
+        let matchingBuddies: User[] = [];
+        //Iterate over the userMatches in user1 and see if the userMatches in user2 have the same alias
+        for (let user1Match in user1.userMatches) {
+            for (let user2Match in user2.userMatches) {
+                if (user1Match === user2Match) {
+                    matchingBuddies.push(this.getUser(user1Match));
+                }
+            }
+        }
+        return matchingBuddies;
+    }
+
+    public getRecommendedUsers(user: User): User[] | null {
+        let recommendedUsers: User[] = [];
+
+        return null;
+    }
+
     //Returns the question with the given questionId
     public getQuestion(questionId: number): Question|null {
         for (let i = 0; i < this.questions.length; i++) {
