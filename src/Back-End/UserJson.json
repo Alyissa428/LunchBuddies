@@ -1,0 +1,29 @@
+{
+    "name": "test-name",
+    "alias": "myalias",
+    "location": "atlanta",
+    "team": "test-team",
+    "age": "1",
+    "questionAnswerPairs": [
+        {
+            "key": 1,
+            "value": [
+                "test-answer1",
+                "test-answer2",
+                "test-answer3"
+            ]
+        },
+        {
+            "key": 2,
+            "value": [
+                "test-answer1",
+                "test-answer2",
+                "test-answer3"
+            ]
+        }
+    ],
+    "userMatches": {
+        "test-user1": 1,
+        "test-user2": 2
+    }
+}
