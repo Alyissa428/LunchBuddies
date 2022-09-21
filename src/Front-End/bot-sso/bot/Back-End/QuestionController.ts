@@ -89,6 +89,10 @@ export class QuestionController {
         //Iterate over all users and calculate their score with the given user. Return the top 3 users.
         for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].getEmail() !== user.getEmail()) {
+                //If the user is in a different location, don't recommend them
+                if (this.users[i].getLocation() !== user.getLocation()) {
+                    continue;
+                }
                 let score = scoreModel.getScore(user, this.users[i], this);
                 //If the recommendedUsers array is less than 3, just add the user
                 if (recommendedUsers.length < 3) {
