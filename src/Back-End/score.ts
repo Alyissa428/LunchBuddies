@@ -65,4 +65,9 @@ export class Score {
         }
 
     }
+
+    private ComputeAverageScore() : number {
+        
+        return 0.0;
+    }
 }
