@@ -56,6 +56,10 @@
                         {
                             "title": "Show",
                             "description": "Show user profile by calling Microsoft Graph API with SSO"
+                        },
+                        {
+                            "title" : "Questionnaire Submitted",
+                            "description" : "Select this option, once you have submited the questionnaire."
                         }
                     ]
                 }

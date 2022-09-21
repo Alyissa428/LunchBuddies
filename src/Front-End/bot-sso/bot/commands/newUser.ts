@@ -28,35 +28,5 @@ export class NewUserCommand extends Mixin(BotCommand, SSOCommand) {
     console.log("HERE 2: ", this.myInfo);
     const card = Utils.renderAdaptiveCard(rawNewUserCard);
     await context.sendActivity({ attachments: [card] });
-
-    // if (me) {
-    //   const matchCard = CardFactory.thumbnailCard(
-    //     " "+ `Woof! We found a lunch buddy for you today. \n You're logged in as ${me.displayName} \n (${me.userPrincipalName}). ${
-    //       me.jobTitle ? `Your job title is: ${me.jobTitle}` : ""
-    //     }` 
-    //     );
-    //     await context.sendActivity({ attachments: [matchCard] });
-    //     await context.sendActivity(
-    //       `You're logged in as ${me.displayName} (${me.userPrincipalName})${
-    //         me.jobTitle ? `; your job title is: ${me.jobTitle}` : ""
-    //       }.`
-    //     );
-    //   console.log("Found");
-      
-    // } else {
-    //   await context.sendActivity(
-    //     "Could not retrieve profile information from Microsoft Graph."
-    //   );
-    // }
   }
-
-  // async run(parameters: any): Promise<any> {
-  //   //this.operationWithSSOToken = this.showUserInfo;
-    
-  //   const card = Utils.renderAdaptiveCard(rawNewUserCard);
-  //   // console.log("HERE!! " + this.myInfo);
-  //   console.log("HERE!! " + JSON.stringify(this));
-  //   return await parameters.context.sendActivity({ attachments: [card] });
-    
-  // }
 }
