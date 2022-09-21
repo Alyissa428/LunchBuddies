@@ -18,16 +18,10 @@
   ],
   "actions": [
     {
-      "type": "Action.Submit",
-      "title": "Find a lunch buddy",
-      "id": "btnQuestionnaire",
-      "data": {
-        "msteams": {
-          "type": "messageBack",
-          "displayText": "Find a lunch buddy",
-          "text": "sendQuestionnaire"
-        }
-      }
+      "type": "Action.Execute",
+      "title": "Find a lunch buddy!",
+      "verb": "questionnaireSubmit",
+      "fallback": "Action.Submit"
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

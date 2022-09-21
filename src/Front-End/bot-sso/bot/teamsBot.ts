@@ -8,12 +8,15 @@ import {
   MemoryStorage,
   ConversationState,
   UserState,
+  ConsoleTranscriptLogger,
 } from "botbuilder";
 import { Utils } from "./helpers/utils";
 import { SSODialog } from "./helpers/ssoDialog";
 import { CommandsHelper } from "./helpers/commandHelper";
+import { MatchCommand } from "./commands/matchUser";
 const rawNewUserCard = require("./adaptiveCards/newUser.json");
 const rawLearnCard = require("./adaptiveCards/learn.json");
+const rawMatchCard = require("./adaptiveCards/Match.json");
 
 export class TeamsBot extends TeamsActivityHandler {
   likeCountObj: { likeCount: number };
@@ -22,6 +25,7 @@ export class TeamsBot extends TeamsActivityHandler {
   dialog: SSODialog;
   dialogState: any;
   commandsHelper: CommandsHelper;
+  match: MatchCommand;
 
   constructor() {
     super();
@@ -84,6 +88,7 @@ export class TeamsBot extends TeamsActivityHandler {
     context: TurnContext,
     invokeValue: AdaptiveCardInvokeValue
   ): Promise<AdaptiveCardInvokeResponse> {
+    console.log("Hello world")
     // The verb "userlike" is sent from the Adaptive Card defined in adaptiveCards/learn.json
     if (invokeValue.action.verb === "userlike") {
       this.likeCountObj.likeCount++;
@@ -93,8 +98,17 @@ export class TeamsBot extends TeamsActivityHandler {
         id: context.activity.replyToId,
         attachments: [card],
       });
-      return { statusCode: 200, type: undefined, value: undefined };
     }
+    else if (invokeValue.action.verb === "questionnaireSubmit") {
+      console.log("I made it here");
+      this.match = new MatchCommand();
+      console.log("Match", this.match);
+      const card = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj)
+      console.log("card", card);
+      await context.sendActivity({ attachments: [card] });
+      console.log("Finished context: ", context);
+    } 
+    return { statusCode: 200, type: undefined, value: undefined };
   }
 
   async run(context: TurnContext) {

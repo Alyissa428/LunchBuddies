@@ -32,7 +32,7 @@ export class MatchCommand extends BotCommand {
     };
   }
 
-  async run(parameters: any): Promise<any> {
+  public async run(parameters: any): Promise<any> {
     const card = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
     return await parameters.context.sendActivity({ attachments: [card] });
   }
