@@ -9,5 +9,10 @@
     "devDependencies": {
         "@microsoft/teamsfx-cli": "1.*"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "@azure/arm-kusto": "^7.2.0",
+        "@azure/identity": "^3.0.0",
+        "azure-kusto-data": "^3.4.2"
+    }
 }
