@@ -6,12 +6,21 @@ import { Score } from './score';
 
 export class QuestionController {
 
+    private static instance: QuestionController;
     private questions: Question[] = [];
     private users: User[] = [];
 
     constructor() {
+        if(QuestionController.instance){
+            throw new Error("Error: Instantiation failed: Use SingletonClass.getInstance() instead of new.");
+        }
+        QuestionController.instance = this;
         this.questions = [];
         this.users = [];
+    }
+
+    public static getInstance(): QuestionController {
+        return QuestionController.instance;
     }
 
     //Adds a new question to the list of questions
@@ -151,7 +160,7 @@ export class QuestionController {
     }
 
     //Returns the question with the given questionId
-    public getQuestionAnswers(questionId: number): { [key: string]: {[key: string]: number;} } | null {
+    public getQuestionAnswers(questionId: number): Map<string,Map<string, number>> | null {
         for (let i = 0; i < this.questions.length; i++) {
             if (this.questions[i].getQuestionId() === questionId) {
                 return this.questions[i].getAnswers();
