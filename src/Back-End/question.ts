@@ -13,3 +13,4 @@ export enum QuestionType {
     SharedExperiences,
     SocialBarriers
 }
+
