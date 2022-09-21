@@ -1,7 +1,7 @@
-import { QuestionType } from './question';
-import { QuestionController } from './QuestionController';
-import { Score } from './score'
-// import { User } from './user'
+import { QuestionType } from '../question';
+import { QuestionController } from '../QuestionController';
+import { Score } from '../score'
+import { User } from '../user'
 
 function main(){
     let score_obj = new Score();
@@ -22,11 +22,14 @@ function main(){
     }
     qc.addQuestion(q1);
 
-    let userA = {
+    var userA : User = {
         name: "Alfred Arnold",
         alias: "alfredarnold",
+        hometown: "Atlanta",
+        college: "Georgia Tech",
         location: "ATL-AY",
         team: "Azure",
+        language: "English",
         age: 25,
         questionAnswerPairs: { 
             12: ["one","two"],
@@ -38,8 +41,11 @@ function main(){
     let userB = {
         name: "Bruce Barnaby",
         alias: "brucebarnaby",
+        hometown: "Atlanta",
+        college: "Georgia State",
         location: "ATL-AY",
         team: "Azure",
+        language: "English",
         age: 30,
         questionAnswerPairs: { 12: ["one","three"] },
         userMatches: { },
