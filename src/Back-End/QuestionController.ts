@@ -46,7 +46,23 @@ export class QuestionController {
 
     public getDailyQuestionList(): Question[]|null {
         //We could give one major, one minor, and one of either type?
-        return [];
+        //Get a random major question and a random minor question from the list of questions
+        let majorQuestion = this.getRandomQuestion(QuestionType.MajorTalkingPoint);
+        let minorQuestion = this.getRandomQuestion(QuestionType.MinorTalkingPoint);
+
+        return [majorQuestion, minorQuestion];
+    }
+
+    private getRandomQuestion(type: QuestionType) {
+        //Choose a random question of the given type from the list of questions
+        let randomQuestion: Question|null = null;
+        while (randomQuestion === null) {
+            let randomIndex = Math.floor(Math.random() * this.questions.length);
+            if (this.questions[randomIndex].type === type) {
+                randomQuestion = this.questions[randomIndex];
+            }
+        }
+        return randomQuestion;
     }
 
     public getAllMatchingBuddies(user1: User, user2: User): User[] {
