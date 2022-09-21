@@ -42,16 +42,24 @@
                     ],
                     "commands": [
                         {
-                            "title": "welcome",
-                            "description": "Resend welcome card of this Bot"
+                            "title": "New user",
+                            "description": "If you are a new user, please select this option"
                         },
                         {
-                            "title": "learn",
+                            "title": "Find a lunch buddy",
+                            "description": "Select this option if you are looking for a lunch buddy"
+                        },
+                        {
+                            "title": "Learn",
                             "description": "Learn about Adaptive Card and Bot Command"
                         },
                         {
-                            "title": "show",
+                            "title": "Show",
                             "description": "Show user profile by calling Microsoft Graph API with SSO"
+                        },
+                        {
+                            "title" : "Questionnaire Submitted",
+                            "description" : "Select this option, once you have submited the questionnaire."
                         }
                     ]
                 }

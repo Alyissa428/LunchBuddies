@@ -1,0 +1,29 @@
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "color": "accent",
+      "size": "large",
+      "text": "Hooray! You submited the questionnaire.",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "size": "Medium",
+      "text": "Expect to recieve two personality questions every time you try to find a lunch buddy the first 7 days. This will help us match you better with someone else. Click below to find a lunch buddy now or type \"Find a lunch buddy\" when you want one.",
+      "wrap": true
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Find a lunch buddy!",
+      "verb": "questionnaireSubmit",
+      "fallback": "Action.Submit"
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.4"
+}
