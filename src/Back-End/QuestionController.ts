@@ -2,6 +2,7 @@
 import { Question } from './question';
 import { User } from './user';
 import { QuestionType } from './question';
+import { Score } from './score';
 
 export class QuestionController {
 
@@ -43,7 +44,7 @@ export class QuestionController {
         return null;
     }
 
-    public getDailyQuestionList(): Question[] {
+    public getDailyQuestionList(): Question[]|null {
         //We could give one major, one minor, and one of either type?
         return [];
     }
@@ -54,7 +55,7 @@ export class QuestionController {
         for (let user1Match in user1.userMatches) {
             for (let user2Match in user2.userMatches) {
                 if (user1Match === user2Match) {
-                    matchingBuddies.push(this.getUser(user1Match));
+                    matchingBuddies.push(this.getUser(user1Match)!);
                 }
             }
         }
@@ -62,9 +63,36 @@ export class QuestionController {
     }
 
     public getRecommendedUsers(user: User): User[] | null {
-        let recommendedUsers: User[] = [];
-
-        return null;
+        let recommendedUsers: {[key: string]: number} = {};
+        let scoreModel = new Score();
+        //Iterate over all users and calculate their score with the given user. Return the top 3 users.
+        for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].alias !== user.alias) {
+                let score = scoreModel.getScore(user, this.users[i], this);
+                //If the recommendedUsers array is less than 3, just add the user
+                if (recommendedUsers.length < 3) {
+                    recommendedUsers[this.users[i].alias] = score;
+                } else {
+                    //Otherwise, we need to find the user with the lowest score and replace them
+                    let lowestScore = 0;
+                    let lowestScoreUser = "";
+                    for (let recommendedUser in recommendedUsers) {
+                        if (recommendedUsers[recommendedUser] < lowestScore) {
+                            lowestScore = recommendedUsers[recommendedUser];
+                            lowestScoreUser = recommendedUser;
+                        }
+                    }
+                    if (score > lowestScore) {
+                        recommendedUsers[lowestScoreUser] = score;
+                    }
+                }
+            }
+        }
+        let recommendedUsersArray: User[] = [];
+        for (let recommendedUser in recommendedUsers) {
+            recommendedUsersArray.push(this.getUser(recommendedUser)!);
+        }
+        return recommendedUsersArray;
     }
 
     //Returns the question with the given questionId
