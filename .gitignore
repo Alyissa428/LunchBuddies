@@ -2,3 +2,4 @@ reference_demos/*
 .vs/*
 src/Front-End/bot-sso/build/*
 *.zip
+src/Back-End/*.js
