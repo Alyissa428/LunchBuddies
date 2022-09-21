@@ -1,0 +1,43 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+      {
+        "type": "TextBlock",
+        "size": "Medium",
+        "weight": "Bolder",
+        "id": "Title",
+        "text": "If you are working from home, what office is the closest to you (city)?",
+        "wrap": true,
+        "horizontalAlignment": "Left"
+      },
+      {
+        "type": "Input.ChoiceSet",
+        "id": "acOfficeLocation",
+        "isMultiSelect": false,
+        "value": "",
+        "style": "compact",
+        "choices": [
+          {
+            "title": "Redmond, WA",
+            "value": "redmond"
+          },
+          {
+            "title": "Atlanta, GA",
+            "value": "atlanta"
+          },
+          {
+            "title": "New York City, NY",
+            "value": "nyc"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.Submit",
+        "title": "Next Question"
+      }
+    ]
+  }
