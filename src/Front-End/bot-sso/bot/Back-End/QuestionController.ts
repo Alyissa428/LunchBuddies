@@ -29,15 +29,20 @@ export class QuestionController {
         this.users.push(user);
     }
 
+    public addNewMatch(user1: User, user2: User): void {
+        user1.addMatch(user2, this);
+        user2.addMatch(user1, this);
+    }
+
     //Returns the list of users
     public getUsers(): User[] {
         return this.users;
     }
 
-    //Returns the user with the given alias
-    public getUser(alias: string): User|null {
+    //Returns the user with the given email
+    public getUser(email: string): User|null {
         for (let i = 0; i < this.users.length; i++) {
-            if (this.users[i].alias === alias) {
+            if (this.users[i].getEmail() === email) {
                 return this.users[i];
             }
         }
@@ -58,7 +63,7 @@ export class QuestionController {
         let randomQuestion: Question|null = null;
         while (randomQuestion === null) {
             let randomIndex = Math.floor(Math.random() * this.questions.length);
-            if (this.questions[randomIndex].type === type) {
+            if (this.questions[randomIndex].getType() === type) {
                 randomQuestion = this.questions[randomIndex];
             }
         }
@@ -68,8 +73,8 @@ export class QuestionController {
     public getAllMatchingBuddies(user1: User, user2: User): User[] {
         let matchingBuddies: User[] = [];
         //Iterate over the userMatches in user1 and see if the userMatches in user2 have the same alias
-        for (let user1Match in user1.userMatches) {
-            for (let user2Match in user2.userMatches) {
+        for (let user1Match in user1.getMatches()) {
+            for (let user2Match in user2.getMatches()) {
                 if (user1Match === user2Match) {
                     matchingBuddies.push(this.getUser(user1Match)!);
                 }
@@ -83,11 +88,15 @@ export class QuestionController {
         let scoreModel = new Score();
         //Iterate over all users and calculate their score with the given user. Return the top 3 users.
         for (let i = 0; i < this.users.length; i++) {
-            if (this.users[i].alias !== user.alias) {
+            if (this.users[i].getEmail() !== user.getEmail()) {
+                //If the user is in a different location, don't recommend them
+                if (this.users[i].getLocation() !== user.getLocation()) {
+                    continue;
+                }
                 let score = scoreModel.getScore(user, this.users[i], this);
                 //If the recommendedUsers array is less than 3, just add the user
                 if (recommendedUsers.length < 3) {
-                    recommendedUsers[this.users[i].alias] = score;
+                    recommendedUsers[this.users[i].getEmail()] = score;
                 } else {
                     //Otherwise, we need to find the user with the lowest score and replace them
                     let lowestScore = 0;
@@ -114,7 +123,7 @@ export class QuestionController {
     //Returns the question with the given questionId
     public getQuestion(questionId: number): Question|null {
         for (let i = 0; i < this.questions.length; i++) {
-            if (this.questions[i].questionId === questionId) {
+            if (this.questions[i].getQuestionId() === questionId) {
                 return this.questions[i];
             }
         }
@@ -124,8 +133,8 @@ export class QuestionController {
     //Returns the question with the given questionId
     public getQuestionText(questionId: number): string|null {
         for (let i = 0; i < this.questions.length; i++) {
-            if (this.questions[i].questionId === questionId) {
-                return this.questions[i].questionText;
+            if (this.questions[i].getQuestionId() === questionId) {
+                return this.questions[i].getQuestionText();
             }
         }
         return null;
@@ -134,8 +143,8 @@ export class QuestionController {
     //Returns the question with the given questionId
     public getQuestionType(questionId: number): QuestionType|null {
         for (let i = 0; i < this.questions.length; i++) {
-            if (this.questions[i].questionId === questionId) {
-                return this.questions[i].type;
+            if (this.questions[i].getQuestionId() === questionId) {
+                return this.questions[i].getType();
             }
         }
         return null;
@@ -144,8 +153,8 @@ export class QuestionController {
     //Returns the question with the given questionId
     public getQuestionAnswers(questionId: number): { [key: string]: {[key: string]: number;} } | null {
         for (let i = 0; i < this.questions.length; i++) {
-            if (this.questions[i].questionId === questionId) {
-                return this.questions[i].answers;
+            if (this.questions[i].getQuestionId() === questionId) {
+                return this.questions[i].getAnswers();
             }
         }
         return null;

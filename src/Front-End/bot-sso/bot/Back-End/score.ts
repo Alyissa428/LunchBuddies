@@ -10,8 +10,8 @@ export class Score {
         // iterate through every question.
         questions.forEach(question => {
             //Get map of all questionId/answerList pairs for users A and B
-            let answersA = userA.questionAnswerPairs[question.questionId];
-            let answersB = userB.questionAnswerPairs[question.questionId]; 
+            let answersA = userA.getQuestionAnswerPairs()[question.getQuestionId()];
+            let answersB = userB.getQuestionAnswerPairs()[question.getQuestionId()]; 
 
             if (answersA.length && answersB.length){
                 numCommonQuestions++;
@@ -25,7 +25,8 @@ export class Score {
                 answersB.forEach(answerB => {
                     if (answerA == answerB) {
                         numAnswerMatches++;
-                        console.log("users A and B both have answer `"+answerA+"` for question `"+question.questionId+"`: +1")
+                        console.log("users A and B both have answer `"+answerA+"` for question `"
+                        +question.getQuestionId()+"`: +1")
                     }
                     else {
                         //TODO: decide if we need this else statement
@@ -35,8 +36,10 @@ export class Score {
                 });
 
             });
-            console.log("Compatibility based on question id `"+question.questionId+"`:",numAnswerMatches / question.numberOfAnswersAllowed,"(answers allowed: "+question.numberOfAnswersAllowed+")");
-            sumScore += numAnswerMatches / question.numberOfAnswersAllowed;
+            console.log("Compatibility based on question id `"+question.getQuestionId()+"`:",
+            numAnswerMatches / question.getNumberOfAnswersAllowed(),"(answers allowed: "
+            +question.getNumberOfAnswersAllowed()+")");
+            sumScore += numAnswerMatches / question.getNumberOfAnswersAllowed();
         });
 
         console.log("[score.ts] sumScore="+sumScore+", numCommonQuestions="+numCommonQuestions)
