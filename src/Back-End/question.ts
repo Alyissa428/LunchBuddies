@@ -14,6 +14,19 @@ export enum QuestionType {
     SocialBarriers
 }
 
+export function getWeightOfQuestionType(type: QuestionType): number {
+    switch (type) {
+        case QuestionType.MajorTalkingPoint:
+            return 0.2;
+        case QuestionType.MinorTalkingPoint:
+            return 0.1;
+        case QuestionType.SharedExperiences:
+            return 0.3;
+        case QuestionType.SocialBarriers:
+            return 0.4;
+    }
+}
+
 export class Question {
     numberOfAnswersAllowed: number;
     type: QuestionType;
