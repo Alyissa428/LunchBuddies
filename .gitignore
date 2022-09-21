@@ -2,7 +2,8 @@ reference_demos/*
 .vs/*
 src/Front-End/bot-sso/build/*
 *.zip
-src/Back-End/RestaurantsClient.ts
+src/Back-End/*.js
+src/Back-End/test/*.js
 
 #API key
 src/Back-End/secret-consants.ts
