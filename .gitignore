@@ -4,3 +4,6 @@ src/Front-End/bot-sso/build/*
 *.zip
 src/Back-End/*.js
 src/Back-End/test/*.js
+
+#API key
+src/Back-End/secret-consants.ts

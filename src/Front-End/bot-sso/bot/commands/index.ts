@@ -1,10 +1,14 @@
 import { BotCommand } from "../helpers/botCommand";
-import { LearnCommand } from "./learn";
 import { ShowUserProfile } from "./showUserProfile";
-import { WelcomeCommand } from "./welcome";
+import { NewUserCommand } from "./newUser";
+import { LearnCommand } from "./learn";
+import { MatchCommand } from "./matchUser";
+import {QuestionnaireConfirmedCommand} from "./questionnaireConfirmed";
 
 export const commands: BotCommand[] = [
-  new LearnCommand(),
   new ShowUserProfile(),
-  new WelcomeCommand(),
+  new NewUserCommand(),
+  new LearnCommand(),
+  new MatchCommand(),
+  new QuestionnaireConfirmedCommand()
 ];
