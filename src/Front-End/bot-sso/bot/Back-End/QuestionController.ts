@@ -160,7 +160,7 @@ export class QuestionController {
     }
 
     //Returns the question with the given questionId
-    public getQuestionAnswers(questionId: number): { [key: string]: {[key: string]: number;} } | null {
+    public getQuestionAnswers(questionId: number): Map<string,Map<string, number>> | null {
         for (let i = 0; i < this.questions.length; i++) {
             if (this.questions[i].getQuestionId() === questionId) {
                 return this.questions[i].getAnswers();
