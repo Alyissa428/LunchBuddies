@@ -15,7 +15,24 @@ export class User {
     private questionAnswerPairs: { [key: number]: string[]; };
     private userMatches: { [key: string]: number; };
 
-    constructor(name: string, email: string, location: string, jobTitle: string) {
+    //Make a default constructor with no parameters
+    public static default(): User {
+        let user = new User();
+        user.name = "";
+        user.email = "";
+        user.hometown = "";
+        user.college = "";
+        user.location = "";
+        user.team = "";
+        user.jobTitle = "";
+        user.language = "";
+        user.age = 0;
+        user.questionAnswerPairs = {};
+        user.userMatches = {};
+        return user;
+    }
+
+    constructor(name?: string, email?: string, location?: string, jobTitle?: string) {
         this.name = name;
         this.email = email;
         this.hometown = "";
