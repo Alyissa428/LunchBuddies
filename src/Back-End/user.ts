@@ -9,6 +9,6 @@ export interface User {
     team: string;
     language: string;
     age: number;
-    questionAnswerPairs: { [key: number]: string[]; };
+    questionAnswerPairs: Map<number,string[]>; //{ [key: number]: string[]; };
     userMatches: { [key: string]: number; };
 }
