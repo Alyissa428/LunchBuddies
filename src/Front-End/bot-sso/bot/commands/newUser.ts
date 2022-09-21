@@ -2,13 +2,11 @@ import { BotCommand, SSOCommand } from "../helpers/botCommand";
 import { Utils } from "../helpers/utils";
 import { CardFactory, TurnContext } from "botbuilder";
 import {createMicrosoftGraphClient,TeamsFx} from "@microsoft/teamsfx";
-import { Mixin } from 'ts-mixer';
 import { GraphRequest } from "@microsoft/microsoft-graph-client";
-import { JsonStringify } from "adaptive-expressions/lib/builtinFunctions";
 
 const rawNewUserCard = require("../adaptiveCards/newUser.json");
 
-export class NewUserCommand extends Mixin(BotCommand, SSOCommand) {
+export class NewUserCommand extends SSOCommand {
   myInfo: GraphRequest
   constructor() {
     super();
