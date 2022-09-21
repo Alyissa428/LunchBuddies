@@ -52,8 +52,10 @@
     ],
     "actions": [
       {
-        "type": "Action.Submit",
-        "title": "Next Question"
+        "type": "Action.Execute",
+        "title": "Next Question",
+        "data": { "questionNumber" : 2},
+        "verb": "nextQuestion"
       }
     ]
   }

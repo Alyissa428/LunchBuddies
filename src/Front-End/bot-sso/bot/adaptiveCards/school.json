@@ -8,21 +8,21 @@
         "size": "Medium",
         "weight": "Bolder",
         "id": "Title",
-        "text": "Which office location is the closest to you (City, State)?",
+        "text": "Where did you go to school?",
         "wrap": true,
         "horizontalAlignment": "Left"
       },
       {
         "type": "Input.Text",
-        "id": "acOfficeLocation",
-        "placeholder": "e.g. Atlanta, GA"
+        "id": "acSchool",
+        "placeholder": "Please specify the full name"
       }
     ],
     "actions": [
       {
         "type": "Action.Execute",
         "title": "Next Question",
-        "data": { "questionNumber" : 1},
+        "data": { "questionNumber" : 3},
         "verb": "nextQuestion"
       }
     ]

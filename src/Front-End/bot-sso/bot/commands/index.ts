@@ -6,6 +6,7 @@ import { MatchCommand } from "./matchUser";
 import {QuestionnaireConfirmedCommand} from "./questionnaireConfirmed";
 import { WeekdayCommand } from "./weekday";
 import { OfficeLocationCommand } from "./officeLocation";
+import { SchoolCommand } from "./school";
 
 export const commands: BotCommand[] = [
   new ShowUserProfile(),
@@ -14,5 +15,6 @@ export const commands: BotCommand[] = [
   new MatchCommand(),
   new QuestionnaireConfirmedCommand(),
   new WeekdayCommand(),
-  new OfficeLocationCommand()
+  new OfficeLocationCommand(),
+  new SchoolCommand()
 ];
