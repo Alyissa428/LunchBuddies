@@ -9,11 +9,11 @@ export class Score {
         let sumScore = 0.0;
         let numCommonQuestions = 0;
         // iterate through every question of the user with fewer answered questions
-        let qaPairs1 = userA.questionAnswerPairs;
-        let qaPairs2 = userB.questionAnswerPairs;
+        let qaPairs1 = userA.getQuestionAnswerPairs();
+        let qaPairs2 = userB.getQuestionAnswerPairs();
         if (qaPairs2.size < qaPairs1.size) {
-            qaPairs1 = userB.questionAnswerPairs;
-            qaPairs2 = userA.questionAnswerPairs;
+            qaPairs1 = userB.getQuestionAnswerPairs();
+            qaPairs2 = userA.getQuestionAnswerPairs();
             if (debug) console.log("[score.ts] user B has fewer answered questions");
         }
 
@@ -21,7 +21,7 @@ export class Score {
             
         qaPairs1.forEach((answerList, questionId) => {
             let question = questionController.getQuestion(questionId);
-            if (debug) console.log("[score.ts] checking for common answers for question `"+questionId+"`... `"+question?.questionText+"`");
+            if (debug) console.log("[score.ts] checking for common answers for question `"+questionId+"`... `"+question?.getQuestionText()+"`");
 
             if (question != null){ // Make sure the question ID returned a valid question
                 var answers2 = qaPairs2.get(questionId);
@@ -44,7 +44,7 @@ export class Score {
                             // tempScore = proximityAnswers.has(answerB) ? proximityAnswers[answerB] == null ? 0 : proximityAnswers[answerB] : 0;
                         }
                     });
-                    if (debug) console.log("[score.ts] Compatibility based on question id `"+questionId+"`:",numAnswerMatches / question.numberOfAnswersAllowed,"(answers allowed: "+question.numberOfAnswersAllowed+")");
+                    if (debug) console.log("[score.ts] Compatibility based on question id `"+questionId+"`:",numAnswerMatches / question.getNumberOfAnswersAllowed(),"(answers allowed: "+question.getNumberOfAnswersAllowed()+")");
                     let thisScore = numAnswerMatches / answerList.length;
                     if (answers2.length <= answerList.length) {
                         thisScore = numAnswerMatches / answers2.length;

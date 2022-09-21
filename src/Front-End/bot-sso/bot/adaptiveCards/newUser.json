@@ -1,0 +1,35 @@
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "color": "accent",
+      "size": "large",
+      "text": "Woof! Welcome to the Lunch Buddy app.",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "size": "Medium",
+      "text": "We will ask a couple of multiple choice questions to match you with a lunch buddy every time you need one.",
+      "wrap": true
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Answer Questionnaire",
+      "id": "btnQuestionnaire",
+      "data": {
+        "msteams": {
+          "type": "messageBack",
+          "displayText": "I want to answer the questionnaire.",
+          "text": "sendQuestionnaire"
+        }
+      }
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.4"
+}
