@@ -4,6 +4,10 @@ src/Front-End/bot-sso/build/*
 *.zip
 src/Back-End/*.js
 src/Back-End/test/*.js
+src/Front-End/bot-sso/build/appPackage/aad.local.json
+src/Front-End/bot-sso/build/appPackage/appPackage.local.zip
+src/Front-End/bot-sso/build/appPackage/manifest.local.json
 
 #API key
 src/Back-End/secret-consants.ts
+node_modules
