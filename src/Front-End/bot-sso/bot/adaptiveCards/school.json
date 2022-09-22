@@ -1,7 +1,5 @@
 {
-    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
     "type": "AdaptiveCard",
-    "version": "1.0",
     "body": [
       {
         "type": "TextBlock",
@@ -25,5 +23,7 @@
         "data": { "questionNumber" : 3},
         "verb": "nextQuestion"
       }
-    ]
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.4"
   }

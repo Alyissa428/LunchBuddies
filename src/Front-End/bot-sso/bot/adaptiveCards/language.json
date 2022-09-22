@@ -1,7 +1,5 @@
 {
-    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
     "type": "AdaptiveCard",
-    "version": "1.0",
     "body": [
       {
         "type": "TextBlock",
@@ -59,6 +57,10 @@
           {
             "title": "Russian",
             "value": "Russian"
+          },
+          {
+            "title": "Other",
+            "value": "Other"
           }
         ]
       }
@@ -70,5 +72,7 @@
         "data": { "questionNumber" : 5},
         "verb": "nextQuestion"
       }
-    ]
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.4"
   }
