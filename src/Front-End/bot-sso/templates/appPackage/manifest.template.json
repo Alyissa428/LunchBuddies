@@ -11,16 +11,16 @@
         "termsOfUseUrl": "{{{state.fx-resource-frontend-hosting.endpoint}}}/index.html#/termsofuse"
     },
     "icons": {
-        "color": "resources/color.png",
-        "outline": "resources/outline.png"
+        "color": "resources/LunchBuddyLogo.png",
+        "outline": "resources/LunchBuddyLogo.png"
     },
     "name": {
-        "short": "{{config.manifest.appName.short}}",
-        "full": "{{config.manifest.appName.full}}"
+        "short": "Lunch Buddy",
+        "full": "Lunch Buddy"
     },
     "description": {
-        "short": "Short description of SSOBotSample.",
-        "full": "Full description of SSOBotSample."
+        "short": "Lunch Buddy app connects MS employees to have lunch and build connections",
+        "full": "Full description of Lunch Buddy."
     },
     "accentColor": "#FFFFFF",
     "bots": [
