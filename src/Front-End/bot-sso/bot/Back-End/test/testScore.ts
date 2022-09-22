@@ -70,8 +70,8 @@ function buildUserMap() : Map<string,User> {
     //     userMatches: { },
     // };
     let userA = new User("Alfred Arnold", "alfredarnold@microsoft.com","ATL-AY","Software Engineer");
-    userA.setQuestionAnswerPair(12, ["one","two"]);
-    userA.setQuestionAnswerPair(13, ["English"]);
+    userA.answerQuestion(12, ["one","two"]);
+    userA.answerQuestion(13, ["English"]);
     um.set("A",userA);
 
     // let qaPairsB = new Map<number,string[]>();
@@ -91,7 +91,7 @@ function buildUserMap() : Map<string,User> {
     //     userMatches: { },
     // };
     let userB = new User("Bruce Barnaby", "brucebarnaby@microsoft.com","ATL-AY","Project Lead");
-    userB.setQuestionAnswerPair(12, ["one","three"]);
+    userB.answerQuestion(12, ["one","three"]);
     um.set("B",userB);
     
     // let qaPairsC = new Map<number,string[]>();
@@ -111,8 +111,8 @@ function buildUserMap() : Map<string,User> {
     //     userMatches: { },
     // };
     let userC = new User("Charlie Cox", "charliecox@microsoft.com","ATL-AY","Intern");
-    userC.setQuestionAnswerPair(12, ["one","three"]);
-    userC.setQuestionAnswerPair(13, ["English"]);
+    userC.answerQuestion(12, ["one","three"]);
+    userC.answerQuestion(13, ["English"]);
     um.set("C",userC);
 
     return um;

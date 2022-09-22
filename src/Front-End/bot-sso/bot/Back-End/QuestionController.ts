@@ -547,6 +547,15 @@ export function makeDummyQuestionController(): QuestionController {
         ["TV", null],
         ["TikTok", null],
     ]));
+    let hometownQuestion = new Question(1, QuestionType.SharedExperiences, 16,
+        "Where are you from?");
+    let teamQuestion = new Question(1, QuestionType.SharedExperiences, 17,
+        "What team are you on?");
+    let collegeQuestion = new Question(1, QuestionType.SharedExperiences, 18,
+        "What college did you go to?");
+    questionController.addQuestion(hometownQuestion);
+    questionController.addQuestion(teamQuestion);
+    questionController.addQuestion(collegeQuestion);
     questionController.addQuestion(question1);
     questionController.addQuestion(question2);
     questionController.addQuestion(question3);
@@ -563,28 +572,28 @@ export function makeDummyQuestionController(): QuestionController {
     questionController.addQuestion(question14);
     questionController.addQuestion(question15);
     let user1 = new User("Eli Newman", "elinewman@microsoft.com", "Atlanta", "Software Engineer");
-    user1.setAge(22);
-    user1.setCollege("NC State");
-    user1.setHometown("Charlotte");
-    user1.setTeam("Azure Networking");
+    user1.answerQuestion(1, ["22"]);
+    user1.answerQuestion(18, ["NC State"]);
+    user1.answerQuestion(16, ["Charlotte"]);
+    user1.answerQuestion(17, ["Azure Networking"]);
     questionController.addUser(user1);
     let user2 = new User("Chris Jenkins", "chrisjenkins@microsoft.com", "Atlanta", "Software Engineer");
-    user2.setAge(30);
-    user2.setCollege("Georgia Tech");
-    user2.setHometown("Atlanta");
-    user2.setTeam("Azure Networking");
+    user2.answerQuestion(1, ["30"]);
+    user2.answerQuestion(18, ["Georgia Tech"]);
+    user2.answerQuestion(16, ["Atlanta"]);
+    user2.answerQuestion(17, ["Azure Networking"]);
     questionController.addUser(user2);
     let user3 = new User("Alyissa Sanders", "alsanders@microsoft.com", "Atlanta", "Software Engineer");
-    user3.setAge(22);
-    user3.setCollege("University of North Texas");
-    user3.setHometown("St. Paul");
-    user3.setTeam("Azure Networking");
+    user3.answerQuestion(1, ["22"]);
+    user3.answerQuestion(18, ["University of North Texas"]);
+    user3.answerQuestion(16, ["St. Paul"]);
+    user3.answerQuestion(17, ["Azure Networking"]);
     questionController.addUser(user3);
     let user4 = new User("Shlok Shah", "shlokshah@microsoft.com", "Atlanta", "Software Engineer");
-    user4.setAge(25);
-    user4.setCollege("Rennselaer Polytechnic Institute");
-    user4.setHometown("Indore");
-    user4.setTeam("Azure Container Storage");
+    user1.answerQuestion(1, ["25"]);
+    user1.answerQuestion(18, ["Rennselaer Polytechnic Institute"]);
+    user1.answerQuestion(16, ["Indore"]);
+    user1.answerQuestion(17, ["Azure Container Storage"]);
     questionController.addUser(user4);
     let dailyQuestions = questionController.getDailyQuestionList();
     //For each user in questionController.users, add the daily questions to their question list
@@ -592,7 +601,7 @@ export function makeDummyQuestionController(): QuestionController {
         let answerChoice = 0;
         for (let question of dailyQuestions) {
             let answers = question.getAnswers().keys();
-            user.setQuestionAnswerPair(question.getQuestionId(), answers[answerChoice]);
+            user.answerQuestion(question.getQuestionId(), answers[answerChoice]);
             answerChoice++;
         }
 
