@@ -7,6 +7,8 @@ var debug : Boolean = true; //If this is true, debug output will be written to c
 
 export class Score {
     getScore(userA: User, userB: User, questionController: QuestionController): number {
+        if (debug) console.log("[score.ts] Calculating score for User A ("+userA.getName()+") and User B ("+userB.getName()+")...");
+
         let sumScore = 0.0;
         let numCommonQuestions = 0;
         let totalWeight = 0.0;
@@ -24,7 +26,7 @@ export class Score {
         qaPairsShort.forEach((answersShort, questionId) => {
             let question = questionController.getQuestion(questionId);
             let answerRelationshipMap = question.getAnswers();
-            if (debug) console.log("[score.ts] checking for common answers for question `"+questionId+"`... `"+question?.getQuestionText()+"`");
+            if (debug) console.log("[score.ts] checking for common answers for question `"+questionId+"`... `"+question?.getQuestionText()+"` (questionType="+question.getType()+", weight="+getWeightOfQuestionType(question.getType())+")");
 
             if (question != null){ // Make sure the question ID returned a valid question
                 var answersLong = qaPairsLong.get(questionId);
@@ -40,20 +42,24 @@ export class Score {
                         //number of selections by either user (in case of "choose up to #" questions where users selected different number of answers)
                         if (answersLong.includes(answer1)) {
                             thisQuestionScore += 1;
-                            if (debug) console.log("[score.ts] users A and B both have answer `"+answer1+"` for question `"+questionId+"`: +1")
-                        } else {
+                            if (debug) console.log("[score.ts] Users A and B both have answer `"+answer1+"` for question `"+questionId+"`: +1")
+                        //Only do similarity scoring if there is a valid answer relationship map for this question
+                        } else if (answerRelationshipMap) {
+                            if (debug) console.log("[score.ts] No answer matching `"+answer1+"` for question `"+questionId+"` for User B, checking for similar answers...")
                             //Iterate through all the answers in answersLong and find the greatest score in answerRelationshipMap to answer1
                             let maxScore = 0;
                             answersLong.forEach(answer2 => {
-                                let score = answerRelationshipMap.get(answer1).get(answer2);
-                                if (score > maxScore) {
-                                    maxScore = score;
+                                let relationships = answerRelationshipMap.get(answer1);
+                                //If there is no relationship map for this answer, give it a 0 (answers have nothing to do with each other and should only get credit if they directly match)
+                                if (relationships != null) {
+                                    let score = relationships.get(answer2);
+                                    if (score && (score > maxScore)) {
+                                        maxScore = score;
+                                        if (debug) console.log("[score.ts] Similar answer `"+answer2+"` for question `"+questionId+"` found for User B: +"+maxScore+" if no better option is found.")
+                                    }
                                 }
                             });
                             thisQuestionScore += maxScore;
-                            //TODO: implement proximity score that adds some amount < 1 for similar answers that dont match
-                            // let proximityAnswers = question.answers[answerA];
-                            // tempScore = proximityAnswers.has(answerB) ? proximityAnswers[answerB] == null ? 0 : proximityAnswers[answerB] : 0;
                         }
                     });
                     if (debug) console.log("[score.ts] Compatibility based on question id `"+questionId+"`:",thisQuestionScore / question.getNumberOfAnswersAllowed(),"(answers allowed: "+question.getNumberOfAnswersAllowed()+")");
@@ -64,6 +70,7 @@ export class Score {
                     let weight = getWeightOfQuestionType(question.getType());
                     sumScore += thisScore * weight;
                     totalWeight += weight;
+                    if (debug) console.log("[score.ts] Question ID `"+questionId+"`: sumScore += "+thisScore+"*"+weight+", totalWeight += "+weight);
                 }
             }
         });
@@ -74,15 +81,12 @@ export class Score {
 
         //Return the average score, or 0 if no common questions
         if (numCommonQuestions > 0) {
-            return sumScore / totalWeight; 
+            let final_score = sumScore / totalWeight;
+            if (debug) console.log("[score.ts] Final compatibility score for User A ("+userA.getName()+") and User B ("+userB.getName()+"): "+sumScore+" / "+totalWeight+" = "+final_score);
+            return final_score; 
         } else {
             return 0.0;
         }
 
-    }
-
-    private ComputeAverageScore() : number {
-        
-        return 0.0;
     }
 }

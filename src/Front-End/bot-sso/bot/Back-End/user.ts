@@ -46,7 +46,7 @@ export class User {
         this.userMatches = {};
     }
 
-    public setQuestionAnswerPair(questionId: number, answers: string[]): void {
+    public answerQuestion(questionId: number, answers: string[]): void {
         this.questionAnswerPairs.set(questionId, answers);
     }
 

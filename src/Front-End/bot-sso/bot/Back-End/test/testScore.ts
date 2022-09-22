@@ -10,42 +10,35 @@ function main(){
 
     var userMap : Map<string,User> = buildUserMap();
 
-    testFunction1(score_obj, qc, userMap);
-    testFunction2(score_obj, qc, userMap);
+    testSimple1(score_obj, qc, userMap);
+    testSimple2(score_obj, qc, userMap);
 }
 
 function buildQuestionController() : QuestionController {
     let qc = new QuestionController();
 
-    // let q12 = {
-    //     numberOfAnswersAllowed: 2,
-    //     type: QuestionType.MajorTalkingPoint,
-    //     questionId: 12,
-    //     questionText: "Which of these numbers do you like the most?",
-    //     //Key: answer text, Value: { Key: other answers Value: relationshipScore}
-    //     answers: { 
-    //         "one": {"two" : 0.0, "three" : 0.0 },
-    //         "two": {"one" : 0.0, "three" : 0.0 },
-    //         "three": {"one" : 0.0, "two" : 0.0 },
-    //     }
-    // }
+    //This question allows up to 2 answers, and has no answers stored in it at all (free response)
     let q12 = new Question(2, QuestionType.MajorTalkingPoint, 12, "Which of these numbers do you like the most?");
     qc.addQuestion(q12);
 
-    // let q13 = {
-    //     numberOfAnswersAllowed: 1,
-    //     type: QuestionType.SocialBarriers,
-    //     questionId: 13,
-    //     questionText: "Which of these languages are you most comfortable speaking?",
-    //     //Key: answer text, Value: { Key: other answers Value: relationshipScore}
-    //     answers: { 
-    //         "English": {"Spanish" : 0.25, "Pig-Latin" : 0.0 },
-    //         "Spanish": {"English" : 0.25, "Pig-Latin" : 0.0 },
-    //         "Pig-Latin": {"English" : 0.0, "Spanish" : 0.0 },
-    //     }
-    // }
     let q13 = new Question(1, QuestionType.SocialBarriers, 13, "Which of these languages are you most comfortable speaking?");
+    let q13_answers = new Map<string,Map<string,number>>([
+        ["English",   new Map<string,number>([["Spanish",0.25], ["Pig-Latin",0.00]])],
+        ["Spanish",   new Map<string,number>([["English",0.25], ["Pig-Latin",0.00]])],
+        ["Pig-Latin", new Map<string,number>([["English",0.00], [  "Spanish",0.00]])],
+    ]);
+    q13.setAnswers(q13_answers);
     qc.addQuestion(q13);
+
+    //This question allows 1 answer selection per user, and has an answer list with null relationship mappings
+    let q14 = new Question(1, QuestionType.SharedExperiences, 14, "What is your favortie hobby?");
+    let q14_answers = new Map<string,Map<string,number>>([
+        ["hiking",   null],
+        ["reading",   null],
+        ["basketball", null],
+    ]);
+    q14.setAnswers(q14_answers);
+    qc.addQuestion(q14);
 
     return qc;
 }
@@ -70,8 +63,8 @@ function buildUserMap() : Map<string,User> {
     //     userMatches: { },
     // };
     let userA = new User("Alfred Arnold", "alfredarnold@microsoft.com","ATL-AY","Software Engineer");
-    userA.setQuestionAnswerPair(12, ["one","two"]);
-    userA.setQuestionAnswerPair(13, ["English"]);
+    userA.answerQuestion(12, ["one","two"]);
+    userA.answerQuestion(13, ["English"]);
     um.set("A",userA);
 
     // let qaPairsB = new Map<number,string[]>();
@@ -91,7 +84,7 @@ function buildUserMap() : Map<string,User> {
     //     userMatches: { },
     // };
     let userB = new User("Bruce Barnaby", "brucebarnaby@microsoft.com","ATL-AY","Project Lead");
-    userB.setQuestionAnswerPair(12, ["one","three"]);
+    userB.answerQuestion(12, ["one","three"]);
     um.set("B",userB);
     
     // let qaPairsC = new Map<number,string[]>();
@@ -111,21 +104,32 @@ function buildUserMap() : Map<string,User> {
     //     userMatches: { },
     // };
     let userC = new User("Charlie Cox", "charliecox@microsoft.com","ATL-AY","Intern");
-    userC.setQuestionAnswerPair(12, ["one","three"]);
-    userC.setQuestionAnswerPair(13, ["English"]);
+    userC.answerQuestion(12, ["one","three"]);
+    userC.answerQuestion(13, ["English"]);
     um.set("C",userC);
+
+    let userD = new User("Desmond Deed", "desmonddeed@microsoft.com","REDMOND","Software Engineer");
+    userD.answerQuestion(14, ["basketball"]);
 
     return um;
 }
 
-function testFunction1(score_obj : Score, qc : QuestionController, userMap : Map<string,User>) {
-    console.log("~~~~~ testFunction1 ~~~~~");
+//One common question, 
+function testSimple1(score_obj : Score, qc : QuestionController, userMap : Map<string,User>) {
+    console.log("~~~~~ testSimple1 ~~~~~");
     console.log("[testScore.ts] score_obj.getScore(userA, userB, qc) ->",score_obj.getScore(userMap.get("A"), userMap.get("B"), qc),"(expected = 0.5)");
 }
 
-function testFunction2(score_obj : Score, qc : QuestionController, userMap : Map<string,User>) {
-    console.log("~~~~~ testFunction2 ~~~~~");
-    console.log("[testScore.ts] score_obj.getScore(userA, userC, qc) ->",score_obj.getScore(userMap.get("A"), userMap.get("C"), qc),"(expected = 0.75)");
+function testSimple2(score_obj : Score, qc : QuestionController, userMap : Map<string,User>) {
+    console.log("~~~~~ testSimple2 ~~~~~");
+    console.log("[testScore.ts] score_obj.getScore(userA, userC, qc) ->",score_obj.getScore(userMap.get("A"), userMap.get("C"), qc),"(expected = 0.8333)");
+}
+
+
+function testNoRelationshipMapEntry(score_obj : Score, qc : QuestionController, userMap : Map<string,User>) {
+    console.log("~~~~~ testNoRelationshipMapEntry ~~~~~");
+
+    console.log();
 }
 
 main();
