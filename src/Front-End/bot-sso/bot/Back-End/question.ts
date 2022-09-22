@@ -24,19 +24,22 @@ export class Question {
     private questionId: number;
     private questionText: string;
     //Key: answer text, Value: { Key: other answers Value: relationshipScore}
-    private answers: { [key: string]: {[key: string]: number; }; };
+    private answers: Map<string,Map<string, number>>;
 
     constructor(numberOfAnswersAllowed: number, type: QuestionType, questionId: number, questionText: string) {
         this.numberOfAnswersAllowed = numberOfAnswersAllowed;
         this.type = type;
         this.questionId = questionId;
         this.questionText = questionText;
-        this.answers = {};
+        this.answers = new Map<string,Map<string, number>>();
     }
     
+    public getAnswers(): Map<string,Map<string,number>> {
+        return this.answers;
+    }
 
-    public addAnswer(answer: string): void {
-        this.answers[answer] = {};
+    public setAnswers(answers: Map<string,Map<string,number>>): void {
+        this.answers = answers;
     }
 
     public addRelationshipScore(answer: string, otherAnswer: string, relationshipScore: number): void {
@@ -62,10 +65,6 @@ export class Question {
 
     public getQuestionText(): string {
         return this.questionText;
-    }
-
-    public getAnswers(): { [key: string]: {[key: string]: number;} } {
-        return this.answers;
     }
 }
 

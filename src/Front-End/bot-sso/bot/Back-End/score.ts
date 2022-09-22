@@ -71,7 +71,6 @@ export class Score {
         if (debug) console.log("[score.ts] sumScore="+sumScore+", numCommonQuestions="+numCommonQuestions)
         //Compute the weighted average of sumScore with the weights of the question types
         
-
         //Return the average score, or 0 if no common questions
         if (numCommonQuestions > 0) {
             return sumScore / totalWeight; 
@@ -79,10 +78,5 @@ export class Score {
             return 0.0;
         }
 
-    }
-
-    private ComputeAverageScore() : number {
-        
-        return 0.0;
     }
 }
