@@ -28,7 +28,14 @@
           "text": "sendQuestionnaire"
         }
       }
+    },
+    {
+      "type": "Action.Execute",
+      "title": "Answer Questionnaire",
+      "verb": "saveUser",
+      "data": "${myUser}"
     }
+
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "version": "1.4"

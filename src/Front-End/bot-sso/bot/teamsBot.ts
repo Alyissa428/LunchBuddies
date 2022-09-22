@@ -14,9 +14,12 @@ import { Utils } from "./helpers/utils";
 import { SSODialog } from "./helpers/ssoDialog";
 import { CommandsHelper } from "./helpers/commandHelper";
 import { MatchCommand } from "./commands/matchUser";
+import { User } from "./Back-End/user";
+import { Json } from "adaptive-expressions/lib/builtinFunctions";
 const rawNewUserCard = require("./adaptiveCards/newUser.json");
 const rawLearnCard = require("./adaptiveCards/learn.json");
 const rawMatchCard = require("./adaptiveCards/Match.json");
+export var UserObj : {myUser: User} = {myUser: new User()};
 
 export class TeamsBot extends TeamsActivityHandler {
   likeCountObj: { likeCount: number };
@@ -63,7 +66,10 @@ export class TeamsBot extends TeamsActivityHandler {
         ssoDialog: this.dialog,
         dialogState: this.dialogState,
         likeCount: this.likeCountObj,
+
       });
+
+
 
       // By calling next() you ensure that the next BotHandler is run.
       await next();
@@ -88,7 +94,12 @@ export class TeamsBot extends TeamsActivityHandler {
     context: TurnContext,
     invokeValue: AdaptiveCardInvokeValue
   ): Promise<AdaptiveCardInvokeResponse> {
-    console.log("Hello world")
+    if (invokeValue.action.verb === "saveUser") {
+      var val = invokeValue.action.data;
+      var temp = JSON.parse(JSON.stringify(val));
+      UserObj = {myUser: temp};
+
+    }
     // The verb "userlike" is sent from the Adaptive Card defined in adaptiveCards/learn.json
     if (invokeValue.action.verb === "userlike") {
       this.likeCountObj.likeCount++;
@@ -100,13 +111,9 @@ export class TeamsBot extends TeamsActivityHandler {
       });
     }
     else if (invokeValue.action.verb === "questionnaireSubmit") {
-      console.log("I made it here");
       this.match = new MatchCommand();
-      console.log("Match", this.match);
-      const card = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj)
-      console.log("card", card);
+      const card = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
       await context.sendActivity({ attachments: [card] });
-      console.log("Finished context: ", context);
     } 
     return { statusCode: 200, type: undefined, value: undefined };
   }

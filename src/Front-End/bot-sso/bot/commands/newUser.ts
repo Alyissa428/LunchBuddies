@@ -10,16 +10,19 @@ import { QuestionController } from "../Back-End/QuestionController";
 
 const rawNewUserCard = require("../adaptiveCards/newUser.json");
 var questionController = new QuestionController();
+var myUserObj : {myUser : User} = {myUser : new User()};
 
 export class NewUserCommand extends SSOCommand {
   myInfo: GraphRequest
-  myUser: User
+  //myUserObj: {myUser: User} = {myUser : new User()};
   //questionController : QuestionController
   constructor() {
     super();
     //this.questionController = new QuestionController();
     this.matchPatterns = [/^\s*new user\s*/];
+    //this.myUserObj = {myUser : new User()};
     this.operationWithSSOToken = this.showUserInfo;
+
   }
  
   async showUserInfo(context: TurnContext, ssoToken: string) {
@@ -30,10 +33,9 @@ export class NewUserCommand extends SSOCommand {
     ]);
     const me = await graphClient.api("/me").get();
     this.myInfo = me;
-    this.myUser = new User(me.displayName, me.mail, me.officeLocation, me.jobTitle);
-    questionController.addUser(this.myUser);
-    console.log("My Info: ", this.myInfo);
-    const card = Utils.renderAdaptiveCard(rawNewUserCard);
+    myUserObj.myUser = new User(me.displayName, me.mail, me.officeLocation, me.jobTitle);
+    questionController.addUser(myUserObj.myUser);
+    const card = Utils.renderAdaptiveCard(rawNewUserCard, myUserObj);
     await context.sendActivity({ attachments: [card] });
   }
 }
