@@ -15,7 +15,6 @@
         "id": "acLanguage",
         "isMultiSelect": true,
         "value": "",
-        "style": "expanded",
         "choices": [
           {
             "title": "English",

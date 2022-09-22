@@ -14,6 +14,7 @@
         "type": "Input.ChoiceSet",
         "id": "acAgeGroup",
         "value": "1",
+        "style": "expanded",
         "choices": [
           {
             "title": "<20",
@@ -44,10 +45,9 @@
     ],
     "actions": [
       {
-        "type": "Action.Execute",
+        "type": "Action.Submit",
         "title": "Submit Questionnaire",
-        "data": { "questionNumber": 6},
-        "verb": "submitQuestion"
+        "data": { "questionNumber": 6}
       }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
