@@ -1,0 +1,29 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "size": "Medium",
+        "weight": "Bolder",
+        "id": "Title",
+        "text": "Which office location is the closest to you (City, State)?",
+        "wrap": true,
+        "horizontalAlignment": "Left"
+      },
+      {
+        "type": "Input.Text",
+        "id": "acOfficeLocation",
+        "placeholder": "e.g. Atlanta, GA"
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.Execute",
+        "title": "Next Question",
+        "data": { "questionNumber" : 1},
+        "verb": "nextQuestion"
+      }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.4"
+  }

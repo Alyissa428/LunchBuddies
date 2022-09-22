@@ -1,0 +1,10 @@
+{
+    "type": "AdaptiveCard",
+    "body": 
+    {
+        "type": "TextBlock",
+        "size": "Medium",
+        "weight": "Bolder",
+        "text": "If you are working from home, what office is the closest to you (city)?"
+    }
+}

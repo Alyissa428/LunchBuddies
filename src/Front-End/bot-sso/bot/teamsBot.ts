@@ -17,6 +17,12 @@ import { MatchCommand } from "./commands/matchUser";
 const rawNewUserCard = require("./adaptiveCards/newUser.json");
 const rawLearnCard = require("./adaptiveCards/learn.json");
 const rawMatchCard = require("./adaptiveCards/Match.json");
+const rawWeekdayCard = require("./adaptiveCards/weekday.json");
+const rawSchoolCard = require("./adaptiveCards/school.json");
+const rawOfficeCard = require("./adaptiveCards/officeLocation.json");
+const rawOriginCard = require("./adaptiveCards/origin.json");
+const rawLanguageCard = require("./adaptiveCards/language.json");
+const rawAgeCard = require("./adaptiveCards/age.json");
 
 export class TeamsBot extends TeamsActivityHandler {
   likeCountObj: { likeCount: number };
@@ -107,7 +113,34 @@ export class TeamsBot extends TeamsActivityHandler {
       console.log("card", card);
       await context.sendActivity({ attachments: [card] });
       console.log("Finished context: ", context);
-    } 
+    }
+    else if (invokeValue.action.data.text == "sendQuestionnaire" ) {
+      console.log("Are we here?");
+      const card = Utils.renderAdaptiveCard(rawOfficeCard);
+      await context.sendActivity({ attachments: [card] });
+    }
+    else if (invokeValue.action.verb === "nextQuestion") {
+      if (invokeValue.action.data.questionNumber == 2) {
+        const card = Utils.renderAdaptiveCard(rawWeekdayCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+      else if (invokeValue.action.data.questionNumber == 3) {
+        const card = Utils.renderAdaptiveCard(rawSchoolCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+      else if (invokeValue.action.data.questionNumber == 4) {
+        const card = Utils.renderAdaptiveCard(rawOriginCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+      else if (invokeValue.action.data.questionNumber == 5) {
+        const card = Utils.renderAdaptiveCard(rawLanguageCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+      else if (invokeValue.action.data.questionNumber == 6) {
+        const card = Utils.renderAdaptiveCard(rawAgeCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+    }
     return { statusCode: 200, type: undefined, value: undefined };
   }
 
