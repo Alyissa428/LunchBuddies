@@ -7,6 +7,9 @@ import {QuestionnaireConfirmedCommand} from "./questionnaireConfirmed";
 import { OriginCommand } from "./origin";
 import { LanguageCommand } from "./language";
 import { AgeCommand } from "./age";
+import { WeekdayCommand } from "./weekday";
+import { OfficeLocationCommand } from "./officeLocation";
+import { SchoolCommand } from "./school";
 
 export const commands: BotCommand[] = [
   new ShowUserProfile(),
@@ -16,5 +19,8 @@ export const commands: BotCommand[] = [
   new QuestionnaireConfirmedCommand(),
   new OriginCommand(),
   new LanguageCommand(),
-  new AgeCommand()
+  new AgeCommand(),
+  new WeekdayCommand(),
+  new OfficeLocationCommand(),
+  new SchoolCommand()
 ];

@@ -1,0 +1,61 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+      {
+        "type": "TextBlock",
+        "size": "Medium",
+        "weight": "Bolder",
+        "id": "Title",
+        "text": "What days do you typically come into the office? (Select all that apply)",
+        "wrap": true,
+        "horizontalAlignment": "Left"
+      },
+      {
+        "type": "Input.ChoiceSet",
+        "id": "acDaysInOffice",
+        "isMultiSelect": true,
+        "value": "",
+        "style": "expanded",
+        "choices": [
+          {
+            "title": "Monday",
+            "value": "monday"
+          },
+          {
+            "title": "Tuesday",
+            "value": "tuesday"
+          },
+          {
+            "title": "Wednesday",
+            "value": "wednesday"
+          },
+          {
+            "title": "Thursday",
+            "value": "thursday"
+          },
+          {
+            "title": "Friday",
+            "value": "friday"
+          },
+          {
+            "title": "Random days",
+            "value": "random"
+          },
+          {
+            "title": "I work from home everyday",
+            "value": "wfh"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.Execute",
+        "title": "Next Question",
+        "data": { "questionNumber" : 2},
+        "verb": "nextQuestion"
+      }
+    ]
+  }

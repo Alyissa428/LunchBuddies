@@ -1,0 +1,29 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+      {
+        "type": "TextBlock",
+        "size": "Medium",
+        "weight": "Bolder",
+        "id": "Title",
+        "text": "Where did you go to school?",
+        "wrap": true,
+        "horizontalAlignment": "Left"
+      },
+      {
+        "type": "Input.Text",
+        "id": "acSchool",
+        "placeholder": "Please specify the full name"
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.Execute",
+        "title": "Next Question",
+        "data": { "questionNumber" : 3},
+        "verb": "nextQuestion"
+      }
+    ]
+  }
