@@ -42,8 +42,8 @@ export class Question {
         this.answers = answers;
     }
 
-    public addRelationshipScore(answer: string, otherAnswer: string, relationshipScore: number): void {
-        this.answers[answer][otherAnswer] = relationshipScore;
+    public setAnswers(answers: Map<string,Map<string,number>>): void {
+        this.answers = answers;
     }
 
     public getRelationshipScore(answer: string, otherAnswer: string): number {

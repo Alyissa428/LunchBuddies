@@ -6,13 +6,22 @@ import { Score } from './score';
 
 export class QuestionController {
 
+    private static instance: QuestionController;
     private questions: Question[] = [];
     private users: User[] = [];
     private dailyQuestions: Question[] = [];
 
     constructor() {
+        if(QuestionController.instance){
+            throw new Error("Error: Instantiation failed: Use SingletonClass.getInstance() instead of new.");
+        }
+        QuestionController.instance = this;
         this.questions = [];
         this.users = [];
+    }
+
+    public static getInstance(): QuestionController {
+        return QuestionController.instance;
     }
 
     //Adds a new question to the list of questions

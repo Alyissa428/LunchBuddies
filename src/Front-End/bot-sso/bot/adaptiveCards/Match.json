@@ -124,7 +124,7 @@
       "data": {
         "msteams": {
           "type": "messageBack",
-          "displayText": "You declined matching with this person.",
+          "displayText": "RA-OHH! You declined matching with this person.",
           "text": "optout"
         }
       }
