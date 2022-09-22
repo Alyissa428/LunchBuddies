@@ -12,7 +12,7 @@ export class User {
     private jobTitle: string;
     private language: string;
     private age: number;
-    private questionAnswerPairs: { [key: number]: string[]; };
+    private questionAnswerPairs: Map<number,string[]>;
     private userMatches: { [key: string]: number; };
 
     //Make a default constructor with no parameters
@@ -27,7 +27,7 @@ export class User {
         user.jobTitle = "";
         user.language = "";
         user.age = 0;
-        user.questionAnswerPairs = {};
+        user.questionAnswerPairs = new Map<number,string[]>();
         user.userMatches = {};
         return user;
     }
@@ -42,15 +42,12 @@ export class User {
         this.team ="";
         this.language = "";
         this.age = 0;
-        this.questionAnswerPairs = {};
+        this.questionAnswerPairs = new Map<number,string[]>();
         this.userMatches = {};
     }
 
-    public addQuestionAnswerPair(questionId: number, answer: string): void {
-        if (this.questionAnswerPairs[questionId] == null) {
-            this.questionAnswerPairs[questionId] = [];
-        }
-        this.questionAnswerPairs[questionId].push(answer);
+    public setQuestionAnswerPair(questionId: number, answers: string[]): void {
+        this.questionAnswerPairs.set(questionId, answers);
     }
 
     public addMatch(user: User, controller: QuestionController): void {
@@ -70,12 +67,12 @@ export class User {
         return this.userMatches;
     }
 
-    public getQuestionAnswerPairs(): { [key: number]: string[]; } {
+    public getQuestionAnswerPairs(): Map<number,string[]> {
         return this.questionAnswerPairs;
     }
 
     public getQuestionAnswerPair(questionId: number): string[] {
-        return this.questionAnswerPairs[questionId];
+        return this.questionAnswerPairs.get(questionId);
     }
 
     //Create getters and setters for all of the user's attributes
