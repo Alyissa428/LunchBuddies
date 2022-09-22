@@ -1,0 +1,74 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+      {
+        "type": "TextBlock",
+        "size": "Medium",
+        "weight": "Bolder",
+        "id": "Title",
+        "text": "What languages do you speak/know?",
+        "wrap": true,
+        "horizontalAlignment": "Left"
+      },
+      {
+        "type": "Input.ChoiceSet",
+        "id": "acLanguage",
+        "isMultiSelect": true,
+        "value": "",
+        "style": "expanded",
+        "choices": [
+          {
+            "title": "English",
+            "value": "English"
+          },
+          {
+            "title": "Chinese",
+            "value": "Chinese"
+          },
+          {
+            "title": "Indian",
+            "value": "Indian"
+          },
+          {
+            "title": "French",
+            "value": "French"
+          },
+          {
+            "title": "Vietnamese",
+            "value": "Vietnamese"
+          },
+          {
+            "title": "Korean",
+            "value": "Korean"
+          },
+          {
+            "title": "Spanish",
+            "value": "Spanish"
+          },
+          {
+            "title": "German",
+            "value": "German"
+          },
+          {
+            "title": "Arabic",
+            "value": "Arabic"
+          }
+          ,
+          {
+            "title": "Russian",
+            "value": "Russian"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.Execute",
+        "title": "Next Question",
+        "data": { "questionNumber" : 5},
+        "verb": "nextQuestion"
+      }
+    ]
+  }

@@ -1,0 +1,62 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+      {
+        "type": "TextBlock",
+        "size": "Medium",
+        "weight": "Bolder",
+        "id": "Title",
+        "text": "What age group are you?",
+        "wrap": true,
+        "horizontalAlignment": "Left"
+      },
+      {
+        "type": "Input.ChoiceSet",
+        "id": "acAgeGroup",
+        "value": "1",
+        "choices": [
+          {
+            "title": "<20",
+            "value": "<20 "
+          },
+          {
+            "title": "[21-30]",
+            "value": "[21-30]"
+          },
+          {
+            "title": "[31-40]",
+            "value": "[31-40]"
+          },
+          {
+            "title": "[41-50]",
+            "value": "[41-50]"
+          },
+          {
+            "title": "51+",
+            "value": "51+"
+          },
+          {
+            "title": "Prefer not to answer ",
+            "value": "Prefer not to answer "
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.Execute",
+        "title": "Submit Questionnaire",
+        "data": {
+            "questionNumber": 6,
+            "msteams": {
+                "type": "messageBack",
+                "displayText": "I want to answer the questionnaire.",
+                "text": "sendQuestionnaire"
+            }
+        },
+        "verb": "submitQuestion"
+      }
+    ]
+  }
