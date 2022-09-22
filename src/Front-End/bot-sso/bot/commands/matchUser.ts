@@ -1,6 +1,10 @@
+import { User } from "../Back-End/user";
 import { BotCommand } from "../helpers/botCommand";
 import { Utils } from "../helpers/utils";
+import { TeamsBot } from "../teamsBot";
 const rawLearnCard = require("../adaptiveCards/match.json");
+
+import {UserObj} from "../teamsBot";
 
 export class MatchCommand extends BotCommand {
   matchObj: { firstname: string, 
@@ -36,6 +40,8 @@ export class MatchCommand extends BotCommand {
     const card = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
     const card2 = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
     const card3 = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
+    console.log(" MatchUser: UserObj", UserObj);
+    
     return await parameters.context.sendActivity({ attachments: [card, card2, card3] });
   }
 }
