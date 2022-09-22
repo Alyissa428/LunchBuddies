@@ -5,14 +5,9 @@ import { Score } from './score';
 export class User {
     private name: string;
     private email: string;
-    private hometown: string;
-    private college: string;
     private location: string;
-    private team: string;
     private jobTitle: string;
-    private language: string;
-    private age: number;
-    private questionAnswerPairs: { [key: number]: string[]; };
+    private questionAnswerPairs: Map<number,string[]>;
     private userMatches: { [key: string]: number; };
 
     //Make a default constructor with no parameters
@@ -20,14 +15,9 @@ export class User {
         let user = new User();
         user.name = "";
         user.email = "";
-        user.hometown = "";
-        user.college = "";
         user.location = "";
-        user.team = "";
         user.jobTitle = "";
-        user.language = "";
-        user.age = 0;
-        user.questionAnswerPairs = {};
+        user.questionAnswerPairs = new Map<number,string[]>();
         user.userMatches = {};
         return user;
     }
@@ -35,22 +25,14 @@ export class User {
     constructor(name?: string, email?: string, location?: string, jobTitle?: string) {
         this.name = name;
         this.email = email;
-        this.hometown = "";
-        this.college = "";
         this.location = location;
         this.jobTitle = jobTitle;
-        this.team ="";
-        this.language = "";
-        this.age = 0;
-        this.questionAnswerPairs = {};
+        this.questionAnswerPairs = new Map<number,string[]>();
         this.userMatches = {};
     }
 
-    public addQuestionAnswerPair(questionId: number, answer: string): void {
-        if (this.questionAnswerPairs[questionId] == null) {
-            this.questionAnswerPairs[questionId] = [];
-        }
-        this.questionAnswerPairs[questionId].push(answer);
+    public answerQuestion(questionId: number, answers: string[]): void {
+        this.questionAnswerPairs.set(questionId, answers);
     }
 
     public addMatch(user: User, controller: QuestionController): void {
@@ -70,12 +52,12 @@ export class User {
         return this.userMatches;
     }
 
-    public getQuestionAnswerPairs(): { [key: number]: string[]; } {
+    public getQuestionAnswerPairs(): Map<number,string[]> {
         return this.questionAnswerPairs;
     }
 
     public getQuestionAnswerPair(questionId: number): string[] {
-        return this.questionAnswerPairs[questionId];
+        return this.questionAnswerPairs.get(questionId);
     }
 
     //Create getters and setters for all of the user's attributes
@@ -95,22 +77,6 @@ export class User {
         this.email = email;
     }
 
-    public getHometown(): string {
-        return this.hometown;
-    }
-
-    public setHometown(hometown: string): void {
-        this.hometown = hometown;
-    }
-
-    public getCollege(): string {
-        return this.college;
-    }
-
-    public setCollege(college: string): void {
-        this.college = college;
-    }
-
     public getLocation(): string {
         return this.location;
     }
@@ -119,35 +85,11 @@ export class User {
         this.location = location;
     }
 
-    public getTeam(): string {
-        return this.team;
-    }
-
-    public setTeam(team: string): void {
-        this.team = team;
-    }
-
     public getJobTitle(): string {
         return this.jobTitle;
     }
 
     public setJobTitle(jobTitle: string): void {
         this.jobTitle = jobTitle;
-    }
-
-    public getLanguage(): string {
-        return this.language;
-    }
-
-    public setLanguage(language: string): void {
-        this.language = language;
-    }
-
-    public getAge(): number {
-        return this.age;
-    }
-
-    public setAge(age: number): void {
-        this.age = age;
     }
 }
