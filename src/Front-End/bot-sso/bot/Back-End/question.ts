@@ -42,10 +42,6 @@ export class Question {
         this.answers = answers;
     }
 
-    public setAnswers(answers: Map<string,Map<string,number>>): void {
-        this.answers = answers;
-    }
-
     public getRelationshipScore(answer: string, otherAnswer: string): number {
         return this.answers[answer][otherAnswer];
     }
