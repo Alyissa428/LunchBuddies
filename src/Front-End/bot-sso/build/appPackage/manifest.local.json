@@ -42,20 +42,24 @@
                     ],
                     "commands": [
                         {
-                            "title": "new user",
+                            "title": "New user",
                             "description": "If you are a new user, please select this option"
                         },
                         {
-                            "title": "learn",
+                            "title": "Find a lunch buddy",
+                            "description": "Select this option if you are looking for a lunch buddy"
+                        },
+                        {
+                            "title": "Learn",
                             "description": "Learn about Adaptive Card and Bot Command"
                         },
                         {
-                            "title": "show",
+                            "title": "Show",
                             "description": "Show user profile by calling Microsoft Graph API with SSO"
                         },
                         {
-                            "title": "match me",
-                            "description": "If you answered the questionnaire, please select this option to be matched with a lunch buddy"
+                            "title": "Questionnaire Submitted",
+                            "description": "Select this option, once you have submited the questionnaire."
                         }
                     ]
                 }
@@ -70,7 +74,7 @@
         "messageTeamMembers"
     ],
     "validDomains": [
-        "9bcf-2001-4898-80e8-3-8533-3db0-af2c-6ad3.ngrok.io"
+        "6da6-2001-4898-80e8-35-3c11-e4f-5fd1-91cc.ngrok.io"
     ],
     "webApplicationInfo": {
         "id": "2bab50d2-2c9c-4fac-b48a-e1226674c06d",

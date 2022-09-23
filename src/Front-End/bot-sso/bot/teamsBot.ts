@@ -7,13 +7,26 @@ import {
   AdaptiveCardInvokeResponse,
   MemoryStorage,
   ConversationState,
-  UserState,
+  UserState
 } from "botbuilder";
 import { Utils } from "./helpers/utils";
 import { SSODialog } from "./helpers/ssoDialog";
 import { CommandsHelper } from "./helpers/commandHelper";
+import { MatchCommand } from "./commands/matchUser";
+import { User } from "./Back-End/user";
+import { Console } from "console";
 const rawNewUserCard = require("./adaptiveCards/newUser.json");
 const rawLearnCard = require("./adaptiveCards/learn.json");
+const rawMatchCard = require("./adaptiveCards/Match.json");
+const rawQuestionnaireConfirmed = require("./adaptiveCards/questionnaireConfirmed.json");
+export var UserObj : {myUser: User} = {myUser: new User()};
+const rawWeekdayCard = require("./adaptiveCards/weekday.json");
+const rawSchoolCard = require("./adaptiveCards/school.json");
+const rawOfficeCard = require("./adaptiveCards/officeLocation.json");
+const rawOriginCard = require("./adaptiveCards/origin.json");
+const rawLanguageCard = require("./adaptiveCards/language.json");
+const rawAgeCard = require("./adaptiveCards/age.json");
+const rawConfirmCard = require("./adaptiveCards/questionnaireConfirmed");
 
 export class TeamsBot extends TeamsActivityHandler {
   likeCountObj: { likeCount: number };
@@ -22,6 +35,7 @@ export class TeamsBot extends TeamsActivityHandler {
   dialog: SSODialog;
   dialogState: any;
   commandsHelper: CommandsHelper;
+  match: MatchCommand;
 
   constructor() {
     super();
@@ -59,7 +73,10 @@ export class TeamsBot extends TeamsActivityHandler {
         ssoDialog: this.dialog,
         dialogState: this.dialogState,
         likeCount: this.likeCountObj,
+
       });
+
+
 
       // By calling next() you ensure that the next BotHandler is run.
       await next();
@@ -84,6 +101,14 @@ export class TeamsBot extends TeamsActivityHandler {
     context: TurnContext,
     invokeValue: AdaptiveCardInvokeValue
   ): Promise<AdaptiveCardInvokeResponse> {
+    if (invokeValue.action.verb === "startQuestionnaire") {
+      var val = invokeValue.action.data;
+      var temp = JSON.parse(JSON.stringify(val));
+      UserObj = {myUser: temp};
+
+      const card = Utils.renderAdaptiveCard(rawOfficeCard);
+      await context.sendActivity({ attachments: [card] });
+    }
     // The verb "userlike" is sent from the Adaptive Card defined in adaptiveCards/learn.json
     if (invokeValue.action.verb === "userlike") {
       this.likeCountObj.likeCount++;
@@ -93,8 +118,47 @@ export class TeamsBot extends TeamsActivityHandler {
         id: context.activity.replyToId,
         attachments: [card],
       });
-      return { statusCode: 200, type: undefined, value: undefined };
     }
+    else if (invokeValue.action.verb === "saveQuestions") {
+      const card1 = Utils.renderAdaptiveCard(rawQuestionnaireConfirmed);
+      await context.sendActivity({ attachments: [card1] });
+    }
+    else if (invokeValue.action.verb === "questionnaireSubmit") {
+      this.match = new MatchCommand();
+      const card1 = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
+      const card2 = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
+      const card3 = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
+      await context.sendActivity({ attachments: [card1, card2, card3] });
+      console.log("Finished context: ", context);
+    }
+    else if (invokeValue.action.verb === "nextQuestion") {
+      if (invokeValue.action.data.questionNumber === 1) {
+        const card = Utils.renderAdaptiveCard(rawWeekdayCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+      else if (invokeValue.action.data.questionNumber === 2) {
+        const card = Utils.renderAdaptiveCard(rawSchoolCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+      else if (invokeValue.action.data.questionNumber === 3) {
+        const card = Utils.renderAdaptiveCard(rawOriginCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+      else if (invokeValue.action.data.questionNumber === 4) {
+        const card = Utils.renderAdaptiveCard(rawLanguageCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+      else if (invokeValue.action.data.questionNumber === 5) {
+        const card = Utils.renderAdaptiveCard(rawAgeCard);
+        await context.sendActivity({ attachments: [card] });
+      }
+    }
+    else if (invokeValue.action.data.questionNumber === 6) {
+      console.log("Are we here?");
+      const card = Utils.renderAdaptiveCard(rawConfirmCard);
+      await context.sendActivity({ attachments: [card] });
+    }
+    return { statusCode: 200, type: undefined, value: undefined };
   }
 
   async run(context: TurnContext) {

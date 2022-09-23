@@ -18,16 +18,10 @@
   ],
   "actions": [
     {
-      "type": "Action.Submit",
+      "type": "Action.Execute",
       "title": "Answer Questionnaire",
-      "id": "btnQuestionnaire",
-      "data": {
-        "msteams": {
-          "type": "messageBack",
-          "displayText": "I want to answer the questionnaire.",
-          "text": "sendQuestionnaire"
-        }
-      }
+      "verb": "startQuestionnaire",
+      "data": "${myUser}"
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

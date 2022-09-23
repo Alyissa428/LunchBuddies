@@ -1,6 +1,10 @@
+import { User } from "../Back-End/user";
 import { BotCommand } from "../helpers/botCommand";
 import { Utils } from "../helpers/utils";
+import { TeamsBot } from "../teamsBot";
 const rawLearnCard = require("../adaptiveCards/match.json");
+
+import {UserObj} from "../teamsBot";
 
 export class MatchCommand extends BotCommand {
   matchObj: { firstname: string, 
@@ -11,7 +15,7 @@ export class MatchCommand extends BotCommand {
     favoriteFood: string,
     hobbies: string,
     compatibilityScore: string,
-    alias: string,
+    email: string,
     newMessage: string
     //imagePatch: string
   };
@@ -26,14 +30,18 @@ export class MatchCommand extends BotCommand {
       favoriteFood: "Mexican",
       hobbies: "Hiking",
       compatibilityScore: "90" + "%",
-      alias: "johndoe",
+      email: "johndoe@microsoft.com",
       newMessage: "hello"
       //imagePatch: ""
     };
   }
 
-  async run(parameters: any): Promise<any> {
+  public async run(parameters: any): Promise<any> {
     const card = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
-    return await parameters.context.sendActivity({ attachments: [card] });
+    const card2 = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
+    const card3 = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
+    console.log(" MatchUser: UserObj", UserObj);
+    
+    return await parameters.context.sendActivity({ attachments: [card, card2, card3] });
   }
 }
