@@ -63,15 +63,15 @@ export class QuestionController {
         //We could give one major, one minor, and one of either type?
         //Get a random major question and a random minor question from the list of questions
         let now = new Date().toLocaleTimeString('en-US');
-        if (now.substring(0, 2) === "12" && now.substring(6, 8) === "PM") {
-            let majorQuestion = this.getRandomQuestion(QuestionType.MajorTalkingPoint);
-            let minorQuestion = this.getRandomQuestion(QuestionType.MinorTalkingPoint);
-            if (this.dailyQuestions.length !== 0) {
-                this.dailyQuestions = [];
-            }
-            this.dailyQuestions.push(majorQuestion);
-            this.dailyQuestions.push(minorQuestion);
+        // if (now.substring(0, 2) === "12" && now.substring(6, 8) === "PM") {
+        let majorQuestion = this.getRandomQuestion(QuestionType.MajorTalkingPoint);
+        let minorQuestion = this.getRandomQuestion(QuestionType.MinorTalkingPoint);
+        if (this.dailyQuestions.length !== 0) {
+            this.dailyQuestions = [];
         }
+        this.dailyQuestions.push(majorQuestion);
+        this.dailyQuestions.push(minorQuestion);
+        // }
 
         return this.dailyQuestions;
     }
@@ -581,30 +581,31 @@ export function makeDummyQuestionController(): QuestionController {
     questionController.addQuestion(question14);
     questionController.addQuestion(question15);
     let user1 = new User("Eli Newman", "elinewman@microsoft.com", "Atlanta", "Software Engineer");
-    user1.answerQuestion(1, ["22"]);
+    user1.answerQuestion(1, ["21-30"]);
     user1.answerQuestion(18, ["NC State"]);
     user1.answerQuestion(16, ["Charlotte"]);
     user1.answerQuestion(17, ["Azure Networking"]);
     questionController.addUser(user1);
     let user2 = new User("Chris Jenkins", "chrisjenkins@microsoft.com", "Atlanta", "Software Engineer");
-    user2.answerQuestion(1, ["30"]);
+    user2.answerQuestion(1, ["21-30"]);
     user2.answerQuestion(18, ["Georgia Tech"]);
     user2.answerQuestion(16, ["Atlanta"]);
     user2.answerQuestion(17, ["Azure Networking"]);
     questionController.addUser(user2);
     let user3 = new User("Alyissa Sanders", "alsanders@microsoft.com", "Atlanta", "Software Engineer");
-    user3.answerQuestion(1, ["22"]);
+    user3.answerQuestion(1, ["21-30"]);
     user3.answerQuestion(18, ["University of North Texas"]);
     user3.answerQuestion(16, ["St. Paul"]);
     user3.answerQuestion(17, ["Azure Networking"]);
     questionController.addUser(user3);
     let user4 = new User("Shlok Shah", "shlokshah@microsoft.com", "Atlanta", "Software Engineer");
-    user1.answerQuestion(1, ["25"]);
-    user1.answerQuestion(18, ["Rennselaer Polytechnic Institute"]);
-    user1.answerQuestion(16, ["Indore"]);
-    user1.answerQuestion(17, ["Azure Container Storage"]);
+    user4.answerQuestion(1, ["21-30"]);
+    user4.answerQuestion(18, ["Rennselaer Polytechnic Institute"]);
+    user4.answerQuestion(16, ["Indore"]);
+    user4.answerQuestion(17, ["Azure Container Storage"]);
     questionController.addUser(user4);
     let dailyQuestions = questionController.getDailyQuestionList();
+    console.log("dailyQuestions ("+dailyQuestions.length+"):",dailyQuestions);
     //For each user in questionController.users, add the daily questions to their question list
     for (let user of questionController.getUsers()) {
         let answerChoice = 0;

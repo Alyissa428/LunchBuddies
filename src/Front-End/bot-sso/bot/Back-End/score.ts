@@ -3,10 +3,8 @@ import {Question} from './question';
 import {QuestionController} from './QuestionController';
 import { getWeightOfQuestionType } from './question';
 
-var debug : Boolean = true; //If this is true, debug output will be written to console when running
-
 export class Score {
-    getScore(userA: User, userB: User, questionController: QuestionController): number {
+    getScore(userA: User, userB: User, questionController: QuestionController, debug?: Boolean): number {
         if (debug) console.log("[score.ts] Calculating score for User A ("+userA.getName()+") and User B ("+userB.getName()+")...");
 
         let sumScore = 0.0;
