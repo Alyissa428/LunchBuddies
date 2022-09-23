@@ -5,8 +5,9 @@ import {createMicrosoftGraphClient,TeamsFx} from "@microsoft/teamsfx";
 import { GraphRequest } from "@microsoft/microsoft-graph-client";
 import { User } from "../Back-End/user";
 import { Console } from "console";
-import { QuestionController } from "../Back-End/QuestionController";
-import { makeDummyQuestionController } from "../Back-End/QuestionController";
+import { makeDummyQuestionController, QuestionController } from "../Back-End/QuestionController";
+export var DummyObj : {myController : QuestionController} = {myController: makeDummyQuestionController()};
+
 
 const rawNewUserCard = require("../adaptiveCards/newUser.json");
 var myUserObj : {myUser : User} = {myUser : new User()};
@@ -38,6 +39,7 @@ export class NewUserCommand extends SSOCommand {
 
     questionController.addUser(myUserObj.myUser);
     console.log(questionController.getUser(me.mail));
+    console.log("DummyObj", DummyObj);
     const card = Utils.renderAdaptiveCard(rawNewUserCard, myUserObj);
     await context.sendActivity({ attachments: [card] });
   }

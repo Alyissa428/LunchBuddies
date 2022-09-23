@@ -30,6 +30,7 @@ const rawLanguageCard = require("./adaptiveCards/language.json");
 const rawAgeCard = require("./adaptiveCards/age.json");
 const rawConfirmCard = require("./adaptiveCards/questionnaireConfirmed");
 
+
 export class TeamsBot extends TeamsActivityHandler {
   likeCountObj: { likeCount: number };
   conversationState: BotState;
