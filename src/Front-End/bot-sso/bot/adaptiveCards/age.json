@@ -47,7 +47,7 @@
       {
         "type": "Action.Execute",
         "title": "Submit Questionnaire",
-        "verb": "submitQuestionnaire",
+        "verb": "saveQuestions",
         "fallback":"Action.Submit" ,
         "data": { "questionNumber": 6}
       }
