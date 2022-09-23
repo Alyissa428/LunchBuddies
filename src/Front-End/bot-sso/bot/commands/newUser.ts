@@ -35,11 +35,13 @@ export class NewUserCommand extends SSOCommand {
     this.myInfo = me;
     myUserObj.myUser = new User(me.displayName, me.mail, me.officeLocation, me.jobTitle);
     console.log("Before testing function");
-    var questionController = makeDummyQuestionController();
+    // var questionController = makeDummyQuestionController();
 
-    questionController.addUser(myUserObj.myUser);
-    console.log(questionController.getUser(me.mail));
-    console.log("DummyObj", DummyObj);
+    // questionController.addUser(myUserObj.myUser);
+    // console.log(questionController.getUser(me.mail));
+    DummyObj.myController.addUser(myUserObj.myUser);
+    console.log("Dummy Obj User: ", DummyObj.myController.getUsers());
+    console.log("DummyObj", DummyObj.myController);
     const card = Utils.renderAdaptiveCard(rawNewUserCard, myUserObj);
     await context.sendActivity({ attachments: [card] });
   }
