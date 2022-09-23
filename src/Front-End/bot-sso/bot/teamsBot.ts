@@ -18,6 +18,7 @@ import { Console } from "console";
 const rawNewUserCard = require("./adaptiveCards/newUser.json");
 const rawLearnCard = require("./adaptiveCards/learn.json");
 const rawMatchCard = require("./adaptiveCards/Match.json");
+const rawQuestionnaireConfirmed = require("./adaptiveCards/questionnaireConfirmed.json");
 export var UserObj : {myUser: User} = {myUser: new User()};
 const rawWeekdayCard = require("./adaptiveCards/weekday.json");
 const rawSchoolCard = require("./adaptiveCards/school.json");
@@ -118,10 +119,16 @@ export class TeamsBot extends TeamsActivityHandler {
         attachments: [card],
       });
     }
+    else if (invokeValue.action.verb === "saveQuestions") {
+      const card1 = Utils.renderAdaptiveCard(rawQuestionnaireConfirmed);
+      await context.sendActivity({ attachments: [card1] });
+    }
     else if (invokeValue.action.verb === "questionnaireSubmit") {
       this.match = new MatchCommand();
-      const card = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
-      await context.sendActivity({ attachments: [card] });
+      const card1 = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
+      const card2 = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
+      const card3 = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
+      await context.sendActivity({ attachments: [card1, card2, card3] });
       console.log("Finished context: ", context);
     }
     else if (invokeValue.action.verb === "nextQuestion") {
