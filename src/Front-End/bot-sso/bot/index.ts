@@ -75,20 +75,3 @@ server.get(
   })
 );
 
-import { KustoManagementClient } from "@azure/arm-kusto";
-import { ClientSecretCredential } from "@azure/identity";
-const subscriptionId = "<subscriptionID>";
-
-/**
-*  Authenticate with a client certificate.
-*/
-let credential = new ClientSecretCredential(
-  "<tenantId>",
-  "<clientId>",
-  "<clientSecret>"
-);
-
-const client = new KustoManagementClient(credential, subscriptionId);
-
-console.log("testing auth");
-console.log(client.databases.get("<resourceGroupName>", "<clusterName>", "<databaseName>").then(x=>console.log(x)));
