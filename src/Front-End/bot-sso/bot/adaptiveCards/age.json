@@ -45,8 +45,10 @@
     ],
     "actions": [
       {
-        "type": "Action.Submit",
+        "type": "Action.Execute",
         "title": "Submit Questionnaire",
+        "verb": "submitQuestionnaire",
+        "fallback":"Action.Submit" ,
         "data": { "questionNumber": 6}
       }
     ],

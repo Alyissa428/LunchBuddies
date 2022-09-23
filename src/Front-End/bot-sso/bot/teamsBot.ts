@@ -118,10 +118,12 @@ export class TeamsBot extends TeamsActivityHandler {
         attachments: [card],
       });
     }
-    else if (invokeValue.action.verb === "questionnaireSubmit") {
+    else if (invokeValue.action.verb === "submitQuestionnaire") {
       this.match = new MatchCommand();
-      const card = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
-      await context.sendActivity({ attachments: [card] });
+      const card1 = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
+      const card2 = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
+      const card3 = Utils.renderAdaptiveCard(rawMatchCard, this.match.matchObj);
+      await context.sendActivity({ attachments: [card1, card2, card3] });
       console.log("Finished context: ", context);
     }
     else if (invokeValue.action.verb === "nextQuestion") {
