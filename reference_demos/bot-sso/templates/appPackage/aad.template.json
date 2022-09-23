@@ -1,7 +1,7 @@
 {
     "id": "{{state.fx-resource-aad-app-for-teams.objectId}}",
     "appId": "{{state.fx-resource-aad-app-for-teams.clientId}}",
-    "name": "{{config.manifest.appName.short}}-aad",
+    "name": "Lunch Buddy",
     "accessTokenAcceptedVersion": 2,
     "signInAudience": "AzureADMyOrg",
     "optionalClaims": {
