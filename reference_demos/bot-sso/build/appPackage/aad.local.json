@@ -1,7 +1,7 @@
 {
     "id": "f0aec908-2af3-43af-abf5-4a828ff6badb",
     "appId": "c89980c9-2a3c-44ec-b1ca-4195b80a1136",
-    "name": "SSOBotSample-local-debug-aad",
+    "name": "Lunch Buddy Debug",
     "accessTokenAcceptedVersion": 2,
     "signInAudience": "AzureADMyOrg",
     "optionalClaims": {
