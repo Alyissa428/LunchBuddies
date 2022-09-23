@@ -15,6 +15,8 @@ import { CommandsHelper } from "./helpers/commandHelper";
 import { MatchCommand } from "./commands/matchUser";
 import { User } from "./Back-End/user";
 import { Console } from "console";
+import { QuestionController } from "./Back-End/QuestionController";
+//import makeDummyQuestionController, { QuestionController } from "./Back-End/QuestionController";
 const rawNewUserCard = require("./adaptiveCards/newUser.json");
 const rawLearnCard = require("./adaptiveCards/learn.json");
 const rawMatchCard = require("./adaptiveCards/Match.json");

@@ -6,10 +6,9 @@ import { GraphRequest } from "@microsoft/microsoft-graph-client";
 import { User } from "../Back-End/user";
 import { Console } from "console";
 import { QuestionController } from "../Back-End/QuestionController";
-
+import { makeDummyQuestionController } from "../Back-End/QuestionController";
 
 const rawNewUserCard = require("../adaptiveCards/newUser.json");
-var questionController = new QuestionController();
 var myUserObj : {myUser : User} = {myUser : new User()};
 
 export class NewUserCommand extends SSOCommand {
@@ -34,7 +33,11 @@ export class NewUserCommand extends SSOCommand {
     const me = await graphClient.api("/me").get();
     this.myInfo = me;
     myUserObj.myUser = new User(me.displayName, me.mail, me.officeLocation, me.jobTitle);
+    console.log("Before testing function");
+    var questionController = makeDummyQuestionController();
+
     questionController.addUser(myUserObj.myUser);
+    console.log(questionController.getUser(me.mail));
     const card = Utils.renderAdaptiveCard(rawNewUserCard, myUserObj);
     await context.sendActivity({ attachments: [card] });
   }

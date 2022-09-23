@@ -599,21 +599,21 @@ export function makeDummyQuestionController(): QuestionController {
     user3.answerQuestion(17, ["Azure Networking"]);
     questionController.addUser(user3);
     let user4 = new User("Shlok Shah", "shlokshah@microsoft.com", "Atlanta", "Software Engineer");
-    user1.answerQuestion(1, ["25"]);
-    user1.answerQuestion(18, ["Rennselaer Polytechnic Institute"]);
-    user1.answerQuestion(16, ["Indore"]);
-    user1.answerQuestion(17, ["Azure Container Storage"]);
+    user4.answerQuestion(1, ["25"]);
+    user4.answerQuestion(18, ["Rennselaer Polytechnic Institute"]);
+    user4.answerQuestion(16, ["Indore"]);
+    user4.answerQuestion(17, ["Azure Container Storage"]);
     questionController.addUser(user4);
-    let dailyQuestions = questionController.getDailyQuestionList();
-    //For each user in questionController.users, add the daily questions to their question list
-    for (let user of questionController.getUsers()) {
-        let answerChoice = 0;
-        for (let question of dailyQuestions) {
-            let answers = question.getAnswers().keys();
-            user.answerQuestion(question.getQuestionId(), answers[answerChoice]);
-            answerChoice++;
-        }
+    // let dailyQuestions = questionController.getDailyQuestionList();
+    // //For each user in questionController.users, add the daily questions to their question list
+    // for (let user of questionController.getUsers()) {
+    //     let answerChoice = 0;
+    //     for (let question of dailyQuestions) {
+    //         let answers = question.getAnswers().keys();
+    //         user.answerQuestion(question.getQuestionId(), answers[answerChoice]);
+    //         answerChoice++;
+    //     }
 
-    }
+    // }
     return questionController;
 }

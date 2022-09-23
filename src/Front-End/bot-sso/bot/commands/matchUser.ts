@@ -22,15 +22,15 @@ export class MatchCommand extends BotCommand {
   constructor() {
     super();
     this.matchPatterns = [/^\s*find a lunch buddy\s*/];
-    this.matchObj = { firstname: "John", 
-      lastname: "Doe",
+    this.matchObj = { firstname: "Alyissa", 
+      lastname: "Sanders",
       title: "Software Engineer", 
-      team: "Azure SQL", 
+      team: "Azure Networking", 
       location: "Atlanta, GA",
-      favoriteFood: "Mexican",
+      favoriteFood: "Italian",
       hobbies: "Hiking",
-      compatibilityScore: "90" + "%",
-      email: "johndoe@microsoft.com",
+      compatibilityScore: "75" + "%",
+      email: "alsanders@microsoft.com",
       newMessage: "hello"
       //imagePatch: ""
     };
@@ -38,7 +38,29 @@ export class MatchCommand extends BotCommand {
 
   public async run(parameters: any): Promise<any> {
     const card = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
+    this.matchObj = { firstname: "Chris",
+      lastname: "Jenkins",
+      title: "Software Engineer",
+      team: "Azure Networking",
+      location: "Atlanta, GA",
+      favoriteFood: "BBQ",
+      hobbies: "Basketball",
+      compatibilityScore: "90" + "%",
+      email: "chrisjenkins@microsoft.com",
+      newMessage: "hello"
+    };
     const card2 = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
+    this.matchObj = { firstname: "John",
+      lastname: "Feshuk",
+      title: "Software Engineer",
+      team: "Azure Storage",
+      location: "Atlanta, GA",
+      favoriteFood: "Mexican",
+      hobbies: "Basketball",
+      compatibilityScore: "40" + "%",
+      email: "johnfeshuk@microsoft.com",
+      newMessage: "hello"
+    };
     const card3 = Utils.renderAdaptiveCard(rawLearnCard, this.matchObj);
     console.log(" MatchUser: UserObj", UserObj);
     
