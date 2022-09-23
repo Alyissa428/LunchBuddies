@@ -180,6 +180,9 @@ export class QuestionController {
 }
 
 export function makeDummyQuestionController(): QuestionController {
+    if (QuestionController.getInstance()) {
+        return QuestionController.getInstance();
+    }
     let questionController = new QuestionController();
     let question1 = new Question(1, QuestionType.MinorTalkingPoint, 1, "How old are you?");
     question1.setAnswers(new Map<string, Map<string, number>>([
