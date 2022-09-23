@@ -14,6 +14,10 @@ LunchBuddy uses your Microsoft credentials to authenticate you, and to properly 
 
 Once you have launched the app, simply use the suggested commands to interact with the chatbot, build your profile and start finding lunch buddies!
 
+## Back-End Design
+
+Our app uses MongoDB to store existing Users and their growing profile as they answer more questions. To calculate which users to recommend for Lunch Buddies, our app uses a unique AI Heuristic algorithm that applies weights to a variety of questions and answers in the database and calculates compatibility through front and back-propogation. Over time, our AI gets to know the users better and improves its accuracy.
+
 ## Developer Guidelines:
 
 [Link to Chatbot API documentation](https://learn.microsoft.com/en-us/microsoftteams/platform/bots/what-are-bots)
