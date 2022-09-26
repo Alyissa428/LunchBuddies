@@ -18,7 +18,6 @@ import { Console } from "console";
 import { QuestionController } from "./Back-End/QuestionController";
 //import makeDummyQuestionController, { QuestionController } from "./Back-End/QuestionController";
 const rawNewUserCard = require("./adaptiveCards/newUser.json");
-const rawLearnCard = require("./adaptiveCards/learn.json");
 const rawMatchCard = require("./adaptiveCards/Match.json");
 const rawQuestionnaireConfirmed = require("./adaptiveCards/questionnaireConfirmed.json");
 export var UserObj : {myUser: User} = {myUser: new User()};
@@ -42,9 +41,6 @@ export class TeamsBot extends TeamsActivityHandler {
 
   constructor() {
     super();
-
-    // record the likeCount
-    this.likeCountObj = { likeCount: 0 };
 
     // Define the state store for your bot.
     // See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
@@ -112,16 +108,6 @@ export class TeamsBot extends TeamsActivityHandler {
       const card = Utils.renderAdaptiveCard(rawOfficeCard);
       await context.sendActivity({ attachments: [card] });
     }
-    // The verb "userlike" is sent from the Adaptive Card defined in adaptiveCards/learn.json
-    if (invokeValue.action.verb === "userlike") {
-      this.likeCountObj.likeCount++;
-      const card = Utils.renderAdaptiveCard(rawLearnCard, this.likeCountObj);
-      await context.updateActivity({
-        type: "message",
-        id: context.activity.replyToId,
-        attachments: [card],
-      });
-    }
     else if (invokeValue.action.verb === "saveQuestions") {
       const card1 = Utils.renderAdaptiveCard(rawQuestionnaireConfirmed);
       await context.sendActivity({ attachments: [card1] });
@@ -157,7 +143,6 @@ export class TeamsBot extends TeamsActivityHandler {
       }
     }
     else if (invokeValue.action.data.questionNumber === 6) {
-      console.log("Are we here?");
       const card = Utils.renderAdaptiveCard(rawConfirmCard);
       await context.sendActivity({ attachments: [card] });
     }

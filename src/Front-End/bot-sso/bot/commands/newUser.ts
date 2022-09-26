@@ -14,13 +14,9 @@ var myUserObj : {myUser : User} = {myUser : new User()};
 
 export class NewUserCommand extends SSOCommand {
   myInfo: GraphRequest
-  //myUserObj: {myUser: User} = {myUser : new User()};
-  //questionController : QuestionController
   constructor() {
     super();
-    //this.questionController = new QuestionController();
     this.matchPatterns = [/^\s*new user\s*/];
-    //this.myUserObj = {myUser : new User()};
     this.operationWithSSOToken = this.showUserInfo;
 
   }
@@ -34,11 +30,6 @@ export class NewUserCommand extends SSOCommand {
     const me = await graphClient.api("/me").get();
     this.myInfo = me;
     myUserObj.myUser = new User(me.displayName, me.mail, me.officeLocation, me.jobTitle);
-    console.log("Before testing function");
-    // var questionController = makeDummyQuestionController();
-
-    // questionController.addUser(myUserObj.myUser);
-    // console.log(questionController.getUser(me.mail));
     DummyObj.myController.addUser(myUserObj.myUser);
     console.log("Dummy Obj User: ", DummyObj.myController.getUsers());
     console.log("DummyObj", DummyObj.myController);

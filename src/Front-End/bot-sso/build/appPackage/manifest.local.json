@@ -7,20 +7,20 @@
     "developer": {
         "name": "Teams App, Inc.",
         "websiteUrl": "https://www.example.com",
-        "privacyUrl": "https://www.example.com/index.html#/privacy",
-        "termsOfUseUrl": "https://www.example.com/index.html#/termsofuse"
+        "privacyUrl": "https://www.example.com/termofuse",
+        "termsOfUseUrl": "https://www.example.com/privacy"
     },
     "icons": {
-        "color": "resources/color.png",
-        "outline": "resources/outline.png"
+        "color": "resources/LunchBuddyLogo.png",
+        "outline": "resources/LunchBuddyLogo.png"
     },
     "name": {
-        "short": "SSOBotSample-local-debug",
-        "full": "Full name for SSOBotSample-local-debug"
+        "short": "Lunch Buddy",
+        "full": "Lunch Buddy"
     },
     "description": {
-        "short": "Short description of SSOBotSample.",
-        "full": "Full description of SSOBotSample."
+        "short": "Finding a buddy for lunch has never been easier!",
+        "full": "Lunch buddy is a Microsoft Teams App Extension that utilizes a chatbot named LABrador (Lunch AI Buddy) to help Microsoft employees connect with their coworkers in office during lunch. When you use Lunch Buddy, LAB asks you to fill out a short survey during the morning of the workday. At 11:30am, you receive 3 matches of coworkers looking for buddies that you are compatible with. The matches are calculated using an AI agent that determines compatibility based on the daily surveys. Additionally, it leverages location-based data and API to find restaurants within walking distance of the office for you and your new buddy to go to. If are having a hard time coming up with conversation topics, don't worry! You can ask LAB for help, and they will provide questions for you to use."
     },
     "accentColor": "#FFFFFF",
     "bots": [
@@ -48,18 +48,6 @@
                         {
                             "title": "Find a lunch buddy",
                             "description": "Select this option if you are looking for a lunch buddy"
-                        },
-                        {
-                            "title": "Learn",
-                            "description": "Learn about Adaptive Card and Bot Command"
-                        },
-                        {
-                            "title": "Show",
-                            "description": "Show user profile by calling Microsoft Graph API with SSO"
-                        },
-                        {
-                            "title": "Questionnaire Submitted",
-                            "description": "Select this option, once you have submited the questionnaire."
                         }
                     ]
                 }
@@ -74,7 +62,7 @@
         "messageTeamMembers"
     ],
     "validDomains": [
-        "6da6-2001-4898-80e8-35-3c11-e4f-5fd1-91cc.ngrok.io"
+        "e4f8-2001-4898-80e8-3-3890-fd60-1ed-f579.ngrok.io"
     ],
     "webApplicationInfo": {
         "id": "2bab50d2-2c9c-4fac-b48a-e1226674c06d",

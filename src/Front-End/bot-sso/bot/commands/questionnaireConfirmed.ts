@@ -15,8 +15,6 @@ export class QuestionnaireConfirmedCommand extends BotCommand {
   }
  
   async run(parameters: any) {
-    // Call Microsoft Graph half of user
-
     const card = Utils.renderAdaptiveCard(rawQuestionnaireConfirmed);
     await parameters.context.sendActivity({ attachments: [card] });
   }
